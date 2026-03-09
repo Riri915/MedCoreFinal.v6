@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11415.280 d18.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MedCoreVB", "MedCoreVB\MedCoreVB.vbproj", "{EF89CDBB-5F24-4BDA-A8D7-FC5E2369324F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2ADF104D-25A1-4CF2-B80F-EF09EAAD4111} = {2ADF104D-25A1-4CF2-B80F-EF09EAAD4111}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedCore", "MedCoreC#\MedCore.csproj", "{2ADF104D-25A1-4CF2-B80F-EF09EAAD4111}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF89CDBB-5F24-4BDA-A8D7-FC5E2369324F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF89CDBB-5F24-4BDA-A8D7-FC5E2369324F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF89CDBB-5F24-4BDA-A8D7-FC5E2369324F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF89CDBB-5F24-4BDA-A8D7-FC5E2369324F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ADF104D-25A1-4CF2-B80F-EF09EAAD4111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ADF104D-25A1-4CF2-B80F-EF09EAAD4111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ADF104D-25A1-4CF2-B80F-EF09EAAD4111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ADF104D-25A1-4CF2-B80F-EF09EAAD4111}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6EF70A2E-59BB-4923-82C7-0951EB56529D}
+	EndGlobalSection
+EndGlobal
