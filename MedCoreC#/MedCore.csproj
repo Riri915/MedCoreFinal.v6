@@ -130,12 +130,6 @@
     <Compile Include="CMSpages\DashboardCon.Designer.cs">
       <DependentUpon>DashboardCon.cs</DependentUpon>
     </Compile>
-    <Compile Include="CMSpages\DoctorsScheduleCon.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CMSpages\DoctorsScheduleCon.Designer.cs">
-      <DependentUpon>DoctorsScheduleCon.cs</DependentUpon>
-    </Compile>
     <Compile Include="CMSpages\InventoryCon.cs">
       <SubType>UserControl</SubType>
     </Compile>

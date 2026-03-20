@@ -34,7 +34,6 @@
             this.btnStockInReports = new System.Windows.Forms.Button();
             this.btnSalesReport = new System.Windows.Forms.Button();
             this.btnUserManagement = new System.Windows.Forms.Button();
-            this.btnDoctorSchedule = new System.Windows.Forms.Button();
             this.btnInventory = new System.Windows.Forms.Button();
             this.btnActLogs = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
@@ -52,7 +51,6 @@
             this.sidebarPanel.Controls.Add(this.btnStockInReports);
             this.sidebarPanel.Controls.Add(this.btnSalesReport);
             this.sidebarPanel.Controls.Add(this.btnUserManagement);
-            this.sidebarPanel.Controls.Add(this.btnDoctorSchedule);
             this.sidebarPanel.Controls.Add(this.btnInventory);
             this.sidebarPanel.Controls.Add(this.btnActLogs);
             this.sidebarPanel.Controls.Add(this.btnDashboard);
@@ -123,28 +121,14 @@
             this.btnUserManagement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUserManagement.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUserManagement.Location = new System.Drawing.Point(15, 341);
+            this.btnUserManagement.Location = new System.Drawing.Point(15, 286);
             this.btnUserManagement.Name = "btnUserManagement";
             this.btnUserManagement.Size = new System.Drawing.Size(359, 37);
-            this.btnUserManagement.TabIndex = 7;
+            this.btnUserManagement.TabIndex = 6;
             this.btnUserManagement.Text = "User Management";
             this.btnUserManagement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUserManagement.UseVisualStyleBackColor = true;
             this.btnUserManagement.Click += new System.EventHandler(this.btnUserManagement_Click);
-            // 
-            // btnDoctorSchedule
-            // 
-            this.btnDoctorSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDoctorSchedule.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDoctorSchedule.Location = new System.Drawing.Point(15, 286);
-            this.btnDoctorSchedule.Name = "btnDoctorSchedule";
-            this.btnDoctorSchedule.Size = new System.Drawing.Size(359, 37);
-            this.btnDoctorSchedule.TabIndex = 6;
-            this.btnDoctorSchedule.Text = "Doctors Schedule";
-            this.btnDoctorSchedule.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDoctorSchedule.UseVisualStyleBackColor = true;
-            this.btnDoctorSchedule.Click += new System.EventHandler(this.btnDoctorSchedule_Click);
             // 
             // btnInventory
             // 
@@ -240,9 +224,8 @@
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Button btnStockInReports;
         private System.Windows.Forms.Button btnSalesReport;
-        private System.Windows.Forms.Button btnUserManagement;
-        private System.Windows.Forms.Button btnDoctorSchedule;
         private System.Windows.Forms.Button btnInventory;
         private System.Windows.Forms.Button btnReturnedItemsReport;
+        private System.Windows.Forms.Button btnUserManagement;
     }
 }

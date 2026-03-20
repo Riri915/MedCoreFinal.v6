@@ -197,7 +197,6 @@ namespace MedCoreC_
             }
         }
 
-        // 🔹 DELETE PRODUCT
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dgvInventory.CurrentRow == null)

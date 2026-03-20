@@ -51,12 +51,6 @@ namespace MedCoreC_
             LoadControl(new InventoryCon());
         }
 
-        private void btnDoctorSchedule_Click(object sender, EventArgs e)
-        {
-            SidebarStyler.SetActive((Button)sender);
-            LoadControl(new DoctorsScheduleCon());
-        }
-
         private void btnUserManagement_Click(object sender, EventArgs e)
         {
             SidebarStyler.SetActive((Button)sender);
