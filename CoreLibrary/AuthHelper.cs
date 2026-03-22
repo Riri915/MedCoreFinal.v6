@@ -1,9 +1,9 @@
 ﻿using BCrypt.Net;
 using MySql.Data.MySqlClient;
 
-namespace MedCoreC_
+namespace CoreLibrary
 {
-    internal static class AuthHelper
+    public static class AuthHelper
     {
         private static readonly string connStr =
             "server=localhost;user id=root;password=;database=medcore;";
@@ -27,7 +27,7 @@ namespace MedCoreC_
                 conn.Open();
 
                 string query = @"
-                    SELECT password_hash, account_type
+                    SELECT employee_id, first_name, last_name, account_type, password_hash
                     FROM users
                     WHERE username = @username
                     LIMIT 1;
@@ -42,16 +42,24 @@ namespace MedCoreC_
                         if (!reader.Read())
                             return false;
 
-                        string storedHash = reader.GetString("password_hash");
+                        string storedHash = reader["password_hash"].ToString();
 
                         if (!BCrypt.Net.BCrypt.Verify(password, storedHash))
                             return false;
 
-                        account_type = reader.GetString("account_type");
+                        // ✅ NOW SAFE (columns exist)
+                        Session.EmployeeID = reader["employee_id"].ToString();
+                        Session.FirstName = reader["first_name"].ToString();
+                        Session.LastName = reader["last_name"].ToString();
+                        Session.Position = reader["account_type"].ToString();
+
+                        account_type = reader["account_type"].ToString();
+
                         return true;
                     }
                 }
             }
         }
+
     }
 }

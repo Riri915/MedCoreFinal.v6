@@ -1,11 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Windows.Forms;
 using BCrypt.Net;
 
-namespace MedCoreC_
+namespace CoreLibrary
 {
-    internal static class DatabaseInitializer
+    public static class DatabaseInitializer
     {
         private static readonly string ConnString =
             "server=localhost;user id=root;password=;Allow User Variables=True;";
@@ -26,6 +25,7 @@ namespace MedCoreC_
                 }
 
                 string dbConnString = ConnString + "database=medcore;";
+
                 using (var dbConn = new MySqlConnection(dbConnString))
                 {
                     dbConn.Open();
@@ -57,6 +57,48 @@ namespace MedCoreC_
                     ";
                     new MySqlCommand(createProductsTable, dbConn).ExecuteNonQuery();
 
+
+                    string createTransactionsTable = @"
+                        CREATE TABLE IF NOT EXISTS transactions (
+                            id INT AUTO_INCREMENT PRIMARY KEY,
+                            TransactionID VARCHAR(50),
+                            CashierName VARCHAR(100),
+                            Total DECIMAL(10,2),
+                            Payment DECIMAL(10,2),
+                            ChangeAmt DECIMAL(10,2),
+                            DateTime DATETIME DEFAULT CURRENT_TIMESTAMP
+                        );
+                    ";
+                    new MySqlCommand(createTransactionsTable, dbConn).ExecuteNonQuery();
+
+
+                    string createTransactionItemsTable = @"
+                        CREATE TABLE IF NOT EXISTS transaction_items (
+                            id INT AUTO_INCREMENT PRIMARY KEY,
+                            TransactionID VARCHAR(50),
+                            ItemName VARCHAR(100),
+                            Quantity INT,
+                            Price DECIMAL(10,2),
+                            Subtotal DECIMAL(10,2)
+                        );
+                    ";
+                    new MySqlCommand(createTransactionItemsTable, dbConn).ExecuteNonQuery();
+
+
+                    string createSalesRecordsTable = @"
+                        CREATE TABLE IF NOT EXISTS sales_records (
+                            id INT AUTO_INCREMENT PRIMARY KEY,
+                            TransactionID VARCHAR(50),
+                            ItemName VARCHAR(100),
+                            Price DECIMAL(10,2),
+                            Quantity INT,
+                            Subtotal DECIMAL(10,2),
+                            DateTime DATETIME
+                        );
+                    ";
+                    new MySqlCommand(createSalesRecordsTable, dbConn).ExecuteNonQuery();
+
+
                     string createActivityLogsTable = @"
                         CREATE TABLE IF NOT EXISTS activity_logs (
                             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -67,6 +109,7 @@ namespace MedCoreC_
                         );
                     ";
                     new MySqlCommand(createActivityLogsTable, dbConn).ExecuteNonQuery();
+
 
                     InsertDefaultUser(dbConn, "EMP001", "System", "Admin", "admin", "admin123", "Admin");
                     InsertDefaultUser(dbConn, "EMP002", "Default", "Cashier", "cashier", "cashier123", "Cashier");
@@ -83,11 +126,8 @@ namespace MedCoreC_
             catch (Exception ex)
             {
                 DatabaseSuccess = false;
-                MessageBox.Show(
-                    "Database initialization failed:\n" + ex.Message,
-                    "Database Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
+
+                throw new Exception("Database initialization failed:\n" + ex.Message
                 );
             }
         }
@@ -134,6 +174,7 @@ namespace MedCoreC_
             string accountType)
         {
             string hash = BCrypt.Net.BCrypt.HashPassword(plainPassword);
+
             string query = @"
                 INSERT INTO users
                 (employee_id, first_name, last_name, username, password_hash, account_type)
