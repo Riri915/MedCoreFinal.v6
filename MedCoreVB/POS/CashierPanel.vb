@@ -444,6 +444,37 @@ Public Class CashierPanel
                     End If
                 Next
             End Using
+            Dim itemsTable As New DataTable()
+            itemsTable.Columns.Add("ProductName")
+            itemsTable.Columns.Add("Subtotal")
+
+            For Each row As DataGridViewRow In dgvCart.Rows
+                If Not row.IsNewRow Then
+                    itemsTable.Rows.Add(
+            row.Cells("colProdName").Value.ToString(),
+            Convert.ToDecimal(row.Cells("colSubtotal").Value)
+        )
+                End If
+            Next
+            Dim receipt As New ReceiptForm()
+            receipt.TransactionID = transactionID
+            receipt.CashierFirstName = FirstName.Text.Trim()
+            receipt.CashierLastName = LastName.Text.Trim()
+            receipt.Payment = payment
+            receipt.Change = change
+            receipt.Total = total
+            receipt.ItemsTable = itemsTable
+            receipt.ShowDialog()
+            dgvCart.Rows.Clear()
+
+            txtTotal.Clear()
+            txtPayment.Clear()
+            txtChange.Clear()
+            originalTotal = 0
+            discountAmount = 0
+            btnCheckout.Enabled = False
+            MessageBox.Show("Transaction completed successfully!")
+
             dgvCart.Rows.Clear()
             txtTotal.Clear()
             txtPayment.Clear()
