@@ -1,9 +1,12 @@
-﻿Imports CoreLibrary
-Imports System.Collections.Specialized.BitVector32
+﻿Imports System.Collections.Specialized.BitVector32
 Imports System.Data.SqlClient
+Imports CoreLibrary
+Imports MedCoreC_
 Imports MySql.Data.MySqlClient
 
 Public Class CashierPanel
+    Private originalTotal As Decimal = 0
+    Private discountAmount As Decimal = 0
     Public Property EmployeeID As String
     Public Property FirstNameValue As String
     Public Property LastNameValue As String
@@ -12,7 +15,28 @@ Public Class CashierPanel
     Private connStr As String = "server=localhost;userid=root;password=;database=POS"
     Private isLoggingOut As Boolean = False
 
+    Dim idleTime As Integer = 0
+    Const MAX_IDLE As Integer = 180
+    Private Sub LogoutUser()
+        isLoggingOut = True
+        IdleTimer.Stop()
+        Timer1.Stop()
+        Me.Hide()
+        LoginForm.Show()
+    End Sub
+    Private Sub AnyUserActivity(sender As Object, e As EventArgs) _
+    Handles Me.MouseMove, Me.MouseClick, Me.KeyDown, Me.KeyPress
+
+        ResetIdle()
+    End Sub
     Private Sub CashierPanel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.FormBorderStyle = FormBorderStyle.None
+        Me.WindowState = FormWindowState.Maximized
+        Me.Bounds = Screen.PrimaryScreen.Bounds
+        idleTime = 0
+        IdleTimer.Interval = 1000
+        IdleTimer.Start()
+        Me.KeyPreview = True
 
         FrostedPanelStyler.ApplyGradient(Panel3)
         InfoPanelStyler.MakeLabelTransparent(Label2, Panel3)
@@ -23,6 +47,7 @@ Public Class CashierPanel
         Me.Bounds = Screen.PrimaryScreen.WorkingArea
         txtQuantity.Text = "1"
         Timer1.Enabled = True
+        IdleTimer.Enabled = True
 
         txtEmployeeID.Text = Session.EmployeeID
         FirstName.Text = Session.FirstName
@@ -51,11 +76,39 @@ Public Class CashierPanel
         DataGridViewStyler.ApplyRoundedCorners(dgvCart)
     End Sub
 
+    Private Sub IdleTimer_Tick(sender As Object, e As EventArgs) Handles IdleTimer.Tick
+        idleTime += 1
+
+        If idleTime >= MAX_IDLE Then
+            MessageBox.Show("Session expired due to inactivity.", "Logged Out",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+            LogoutUser()
+        End If
+    End Sub
+
+    Private Sub ResetIdle()
+        idleTime = 0
+    End Sub
+
+    Private Sub CashierPanel_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+        ResetIdle()
+    End Sub
+
+    Private Sub CashierPanel_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        ResetIdle()
+    End Sub
+
     Private Sub btnLogOut_Click(sender As Object, e As EventArgs) Handles btnLogOut.Click
-        Dim result As DialogResult = MessageBox.Show("Are you sure you want to log out?", "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim result As DialogResult = MessageBox.Show(
+        "Are you sure you want to log out?",
+        "Confirm Logout",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Question
+    )
+
         If result = DialogResult.Yes Then
-            isLoggingOut = True
-            Me.Close()
+            LogoutUser()
         End If
     End Sub
 
@@ -66,7 +119,7 @@ Public Class CashierPanel
         End If
     End Sub
 
-    Private Sub addtocart_Click(sender As Object, e As EventArgs) Handles addtocart.Click
+    Private Sub addtocart_Click(sender As Object, e As EventArgs)
         If textProductID.Text = "" Or txtProductName.Text = "" Then
             MessageBox.Show("Please search and select a valid product first.")
             Exit Sub
@@ -119,7 +172,7 @@ Public Class CashierPanel
         txtQuantity.Text = "1"
     End Sub
 
-    Private Sub dgvCart_CellMouseDown(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvCart.CellMouseDown
+    Private Sub dgvCart_CellMouseDown(sender As Object, e As DataGridViewCellMouseEventArgs)
         If e.RowIndex >= 0 AndAlso e.ColumnIndex = 0 Then
             dgvCart.ClearSelection()
             dgvCart.Rows(e.RowIndex).Selected = True
@@ -127,16 +180,26 @@ Public Class CashierPanel
     End Sub
 
     Private Sub UpdateTotal()
+
         Dim total As Decimal = 0
+
         For Each row As DataGridViewRow In dgvCart.Rows
             If row.Cells("colSubtotal").Value IsNot Nothing Then
                 total += Convert.ToDecimal(row.Cells("colSubtotal").Value)
             End If
         Next
-        txtTotal.Text = total.ToString("F2")
+
+        originalTotal = total
+
+        Dim finalTotal As Decimal = originalTotal - discountAmount
+
+        If finalTotal < 0 Then finalTotal = 0
+
+        txtTotal.Text = finalTotal.ToString("F2")
+
     End Sub
 
-    Private Sub SearchBar_TextChanged(sender As Object, e As EventArgs) Handles SearchBar.TextChanged
+    Private Sub SearchBar_TextChanged(sender As Object, e As EventArgs)
         Dim keyword As String = SearchBar.Text.Trim()
 
         Try
@@ -198,7 +261,6 @@ Public Class CashierPanel
 
     End Sub
 
-
     Private Sub ClearProductFields()
         txtBarcode.Clear()
         textProductID.Clear()
@@ -209,7 +271,7 @@ Public Class CashierPanel
         txtStatus.Clear()
     End Sub
 
-    Private Sub dgvCart_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCart.CellValueChanged
+    Private Sub dgvCart_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs)
         If e.RowIndex >= 0 AndAlso e.ColumnIndex = dgvCart.Columns("colQty").Index Then
             Dim qty As Integer
             Dim unitPrice As Decimal
@@ -221,7 +283,7 @@ Public Class CashierPanel
         End If
     End Sub
 
-    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs)
         If dgvCart.SelectedRows.Count > 0 Then
             Dim row As DataGridViewRow = dgvCart.SelectedRows(0)
             Dim qtyInput As String = InputBox("Enter new quantity for " & row.Cells("colProdName").Value, "Edit Quantity")
@@ -238,7 +300,7 @@ Public Class CashierPanel
         End If
     End Sub
 
-    Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
+    Private Sub btnRemove_Click(sender As Object, e As EventArgs)
         If dgvCart.SelectedRows.Count = 0 Then
             MessageBox.Show("Please select an item to remove.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
@@ -260,19 +322,18 @@ Public Class CashierPanel
         End If
     End Sub
 
-    Private Sub txtPayment_keypress(sender As Object, e As KeyPressEventArgs) Handles txtPayment.KeyPress
+    Private Sub txtPayment_keypress(sender As Object, e As KeyPressEventArgs)
         If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) AndAlso e.KeyChar <> "."c Then e.Handled = True
         If e.KeyChar = "."c AndAlso txtPayment.Text.Contains(".") Then e.Handled = True
     End Sub
 
-    Private Sub txtPayment_TextChanged(sender As Object, e As EventArgs) Handles txtPayment.TextChanged
-        Dim total As Decimal
-        Decimal.TryParse(txtTotal.Text, total)
+    Private Sub txtPayment_TextChanged(sender As Object, e As EventArgs)
+
+        Dim total As Decimal = originalTotal - discountAmount
         Dim payment As Decimal
 
         If Decimal.TryParse(txtPayment.Text, payment) Then
             Dim change As Decimal = payment - total
-
             If payment < total Then
                 txtChange.ForeColor = Color.Red
                 txtChange.Text = "Invalid amount"
@@ -280,27 +341,33 @@ Public Class CashierPanel
             Else
                 txtChange.ForeColor = Color.Black
                 txtChange.Text = change.ToString("F2")
-                btnCheckout.Enabled = (payment >= total AndAlso total > 0)
+                btnCheckout.Enabled = True
             End If
         Else
-            txtChange.ForeColor = Color.Black
             txtChange.Clear()
             btnCheckout.Enabled = False
         End If
     End Sub
+    Private Sub btnCheckout_Click(sender As Object, e As EventArgs)
 
-
-    Private Sub btnCheckout_Click(sender As Object, e As EventArgs) Handles btnCheckout.Click
         If dgvCart.Rows.Count = 0 Then
             MessageBox.Show("Cart is empty. Add items first.")
             Exit Sub
         End If
 
-        Dim total, payment, change As Decimal
-        If Not Decimal.TryParse(txtTotal.Text, total) OrElse
-       Not Decimal.TryParse(txtPayment.Text, payment) OrElse
-       Not Decimal.TryParse(txtChange.Text, change) Then
-            MessageBox.Show("Please ensure all amounts are valid numbers.")
+        Dim total As Decimal = originalTotal - discountAmount
+        Dim payment As Decimal
+        Dim change As Decimal
+
+        If Not Decimal.TryParse(txtPayment.Text, payment) Then
+            MessageBox.Show("Invalid payment.")
+            Exit Sub
+        End If
+
+        change = payment - total
+
+        If payment < total Then
+            MessageBox.Show("Insufficient payment.")
             Exit Sub
         End If
 
@@ -313,6 +380,7 @@ Public Class CashierPanel
                 Dim queryTrans As String =
                 "INSERT INTO transactions (TransactionID, CashierName, Total, Payment, ChangeAmt)
                  VALUES (@tid, @cashier, @total, @pay, @chg)"
+
                 Using cmd As New MySqlCommand(queryTrans, conn)
                     cmd.Parameters.AddWithValue("@tid", transactionID)
                     cmd.Parameters.AddWithValue("@cashier", $"{FirstName.Text} {LastName.Text}")
@@ -324,6 +392,7 @@ Public Class CashierPanel
 
                 For Each row As DataGridViewRow In dgvCart.Rows
                     If Not row.IsNewRow Then
+
                         Dim prodID = row.Cells("colProdID").Value.ToString()
                         Dim itemName = row.Cells("colProdName").Value.ToString()
                         Dim qtySold = Convert.ToInt32(row.Cells("colQty").Value)
@@ -333,6 +402,7 @@ Public Class CashierPanel
                         Dim queryItem As String =
                         "INSERT INTO transaction_items (TransactionID, ItemName, Quantity, Price, Subtotal)
                          VALUES (@tid, @iname, @qty, @price, @sub)"
+
                         Using cmd As New MySqlCommand(queryItem, conn)
                             cmd.Parameters.AddWithValue("@tid", transactionID)
                             cmd.Parameters.AddWithValue("@iname", itemName)
@@ -344,61 +414,34 @@ Public Class CashierPanel
 
                         Dim deductQuery As String =
                         "UPDATE products SET UnitInStock = UnitInStock - @qty WHERE ProductID = @pid"
+
                         Using cmd As New MySqlCommand(deductQuery, conn)
                             cmd.Parameters.AddWithValue("@qty", qtySold)
                             cmd.Parameters.AddWithValue("@pid", prodID)
                             cmd.ExecuteNonQuery()
                         End Using
 
-                        Dim insertSalesQuery As String =
-                        "INSERT INTO sales_records (`TransactionID`, `ItemName`, `Price`, `Quantity`, `Subtotal`, `DateTime`)
-                         VALUES (@tid, @iname, @price, @qty, @sub, NOW())"
-                        Using cmd As New MySqlCommand(insertSalesQuery, conn)
-                            cmd.Parameters.AddWithValue("@tid", transactionID)
-                            cmd.Parameters.AddWithValue("@iname", itemName)
-                            cmd.Parameters.AddWithValue("@price", price)
-                            cmd.Parameters.AddWithValue("@qty", qtySold)
-                            cmd.Parameters.AddWithValue("@sub", subtotal)
-                            cmd.ExecuteNonQuery()
-                        End Using
                     End If
                 Next
             End Using
-
-            Dim itemsTable As New DataTable()
-            itemsTable.Columns.Add("ProductName")
-            itemsTable.Columns.Add("Subtotal")
-            For Each row As DataGridViewRow In dgvCart.Rows
-                If Not row.IsNewRow Then
-                    itemsTable.Rows.Add(row.Cells("colProdName").Value.ToString(), Convert.ToDecimal(row.Cells("colSubtotal").Value))
-                End If
-            Next
-
-            Dim receipt As New ReceiptForm()
-            receipt.TransactionID = transactionID
-            receipt.CashierFirstName = FirstName.Text.Trim()
-            receipt.CashierLastName = LastName.Text.Trim()
-            receipt.Payment = payment
-            receipt.Change = change
-            receipt.Total = total
-            receipt.ItemsTable = itemsTable
-            receipt.ShowDialog()
-
             dgvCart.Rows.Clear()
             txtTotal.Clear()
             txtPayment.Clear()
             txtChange.Clear()
+
+            originalTotal = 0
+            discountAmount = 0
+
             btnCheckout.Enabled = False
 
-            MessageBox.Show("Transaction completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Transaction completed successfully!")
 
         Catch ex As Exception
-            MessageBox.Show("Checkout failed: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Checkout failed: " & ex.Message)
         End Try
     End Sub
 
-
-    Private Sub btnReturn_Click(sender As Object, e As EventArgs) Handles btnReturn.Click
+    Private Sub btnReturn_Click(sender As Object, e As EventArgs)
         Dim returnForm As New ReturnPage()
         returnForm.CurrentCashierName = $"{FirstName.Text.Trim()} {LastName.Text.Trim()}"
         returnForm.ShowDialog()
@@ -408,7 +451,44 @@ Public Class CashierPanel
         datelabel.Text = DateTime.Now.ToString("MMMM dd, yyyy HH:mm:ss")
     End Sub
 
-    Private Sub txtQuantity_keypressed(sender As Object, e As KeyPressEventArgs) Handles txtQuantity.KeyPress
+    Private Sub txtQuantity_keypressed(sender As Object, e As KeyPressEventArgs)
         If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) Then e.Handled = True
+    End Sub
+
+    Private Sub btnDiscount_Click(sender As Object, e As EventArgs) Handles btnDiscount.Click
+
+        Dim frm As New frmAdminAuth()
+
+        If frm.ShowDialog() = DialogResult.OK Then
+
+            Dim selectFrm As New frmDiscountInfo()
+            selectFrm.CashierRef = Me
+            selectFrm.ShowDialog()
+
+        Else
+            MessageBox.Show("Admin authentication required!", "Access Denied",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+
+    End Sub
+    Public Sub ApplyDiscount(discountType As String)
+
+        If originalTotal <= 0 Then
+            MessageBox.Show("Cart is empty.")
+            Exit Sub
+        End If
+
+        If discountAmount > 0 Then
+            MessageBox.Show("Discount already applied!")
+            Exit Sub
+        End If
+
+        Dim rate As Decimal = 0.2D
+        discountAmount = originalTotal * rate
+
+        Dim finalTotal As Decimal = originalTotal - discountAmount
+        If finalTotal < 0 Then finalTotal = 0
+        txtTotal.Text = finalTotal.ToString("F2")
+        MessageBox.Show("Discount applied: -" & discountAmount.ToString("F2"))
     End Sub
 End Class

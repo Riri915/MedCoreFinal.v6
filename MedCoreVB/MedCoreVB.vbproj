@@ -172,6 +172,12 @@
     <Compile Include="POS\frmAdminAuth.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="POS\frmDiscountInfo.Designer.vb">
+      <DependentUpon>frmDiscountInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="POS\frmDiscountInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="POS\FrostedPanelStyler.vb" />
     <Compile Include="POS\InfoPanelStyler.vb" />
     <Compile Include="POS\ReceiptForm.Designer.vb">
@@ -215,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="POS\frmAdminAuth.resx">
       <DependentUpon>frmAdminAuth.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="POS\frmDiscountInfo.resx">
+      <DependentUpon>frmDiscountInfo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POS\ReceiptForm.resx">
       <DependentUpon>ReceiptForm.vb</DependentUpon>
