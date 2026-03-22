@@ -89,7 +89,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnUpdate.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnUpdate.BackColor = System.Drawing.Color.Blue;
             this.btnUpdate.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Location = new System.Drawing.Point(225, 664);
@@ -103,7 +103,7 @@
             // btnStockEntry
             // 
             this.btnStockEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnStockEntry.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnStockEntry.BackColor = System.Drawing.Color.Lime;
             this.btnStockEntry.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStockEntry.ForeColor = System.Drawing.Color.White;
             this.btnStockEntry.Location = new System.Drawing.Point(43, 664);
@@ -158,7 +158,7 @@
             // btnAddItem
             // 
             this.btnAddItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddItem.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btnAddItem.BackColor = System.Drawing.Color.Blue;
             this.btnAddItem.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddItem.ForeColor = System.Drawing.Color.White;
             this.btnAddItem.Location = new System.Drawing.Point(1061, 664);
