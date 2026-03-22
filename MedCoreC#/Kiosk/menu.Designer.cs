@@ -1,6 +1,6 @@
-﻿namespace MedCoreC_
+﻿namespace MedCoreC_.Kiosk
 {
-    partial class menu
+    partial class Menu
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,241 +28,189 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(menu));
-            this.pbDentist = new System.Windows.Forms.PictureBox();
-            this.Dentist_Panel = new System.Windows.Forms.Panel();
-            this.Dentist = new System.Windows.Forms.Label();
-            this.Services_panel = new System.Windows.Forms.Panel();
-            this.Services = new System.Windows.Forms.Label();
-            this.pbServices = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
+            this.Main_panel = new System.Windows.Forms.Panel();
+            this.Apt_panel = new System.Windows.Forms.Panel();
+            this.Appointment_lbl = new System.Windows.Forms.Label();
+            this.Serlbl_panel = new System.Windows.Forms.Panel();
+            this.Service_lbl = new System.Windows.Forms.Label();
+            this.Menu_tlp = new System.Windows.Forms.TableLayoutPanel();
             this.Appointment_panel = new System.Windows.Forms.Panel();
-            this.Appointment = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pbAppointment = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.DentisPanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.pbDentist)).BeginInit();
-            this.Dentist_Panel.SuspendLayout();
-            this.Services_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbServices)).BeginInit();
-            this.Appointment_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbAppointment)).BeginInit();
+            this.Service_panel = new System.Windows.Forms.Panel();
+            this.LogoTitile_panel = new System.Windows.Forms.Panel();
+            this.Menulbl = new System.Windows.Forms.Label();
+            this.logo_pb = new System.Windows.Forms.PictureBox();
+            this.Main_panel.SuspendLayout();
+            this.Apt_panel.SuspendLayout();
+            this.Serlbl_panel.SuspendLayout();
+            this.Menu_tlp.SuspendLayout();
+            this.LogoTitile_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             this.SuspendLayout();
             // 
-            // pbDentist
+            // Main_panel
             // 
-            this.pbDentist.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.Main_panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Main_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.Main_panel.Controls.Add(this.Apt_panel);
+            this.Main_panel.Controls.Add(this.Serlbl_panel);
+            this.Main_panel.Controls.Add(this.Menu_tlp);
+            this.Main_panel.Controls.Add(this.LogoTitile_panel);
+            this.Main_panel.Controls.Add(this.logo_pb);
+            this.Main_panel.Location = new System.Drawing.Point(1, 0);
+            this.Main_panel.Name = "Main_panel";
+            this.Main_panel.Size = new System.Drawing.Size(1003, 581);
+            this.Main_panel.TabIndex = 1;
+            // 
+            // Apt_panel
+            // 
+            this.Apt_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbDentist.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pbDentist.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbDentist.BackgroundImage")));
-            this.pbDentist.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbDentist.Location = new System.Drawing.Point(8, 95);
-            this.pbDentist.Name = "pbDentist";
-            this.pbDentist.Size = new System.Drawing.Size(306, 274);
-            this.pbDentist.TabIndex = 2;
-            this.pbDentist.TabStop = false;
+            this.Apt_panel.Controls.Add(this.Appointment_lbl);
+            this.Apt_panel.Location = new System.Drawing.Point(243, 247);
+            this.Apt_panel.Name = "Apt_panel";
+            this.Apt_panel.Size = new System.Drawing.Size(258, 48);
+            this.Apt_panel.TabIndex = 2;
             // 
-            // Dentist_Panel
+            // Appointment_lbl
             // 
-            this.Dentist_Panel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Dentist_Panel.Controls.Add(this.Dentist);
-            this.Dentist_Panel.Controls.Add(this.pbDentist);
-            this.Dentist_Panel.Location = new System.Drawing.Point(674, 139);
-            this.Dentist_Panel.Name = "Dentist_Panel";
-            this.Dentist_Panel.Size = new System.Drawing.Size(320, 409);
-            this.Dentist_Panel.TabIndex = 5;
+            this.Appointment_lbl.AutoSize = true;
+            this.Appointment_lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(71)))), ((int)(((byte)(161)))));
+            this.Appointment_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Appointment_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.Appointment_lbl.Location = new System.Drawing.Point(13, -1);
+            this.Appointment_lbl.Name = "Appointment_lbl";
+            this.Appointment_lbl.Size = new System.Drawing.Size(232, 47);
+            this.Appointment_lbl.TabIndex = 3;
+            this.Appointment_lbl.Text = "Appointment";
             // 
-            // Dentist
+            // Serlbl_panel
             // 
-            this.Dentist.AutoSize = true;
-            this.Dentist.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Dentist.Font = new System.Drawing.Font("Rockwell Condensed", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dentist.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Dentist.Location = new System.Drawing.Point(70, 12);
-            this.Dentist.Name = "Dentist";
-            this.Dentist.Size = new System.Drawing.Size(173, 75);
-            this.Dentist.TabIndex = 2;
-            this.Dentist.Text = "Dentist";
-            this.Dentist.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // Services_panel
-            // 
-            this.Services_panel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Services_panel.Controls.Add(this.Services);
-            this.Services_panel.Controls.Add(this.pbServices);
-            this.Services_panel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Services_panel.Location = new System.Drawing.Point(341, 139);
-            this.Services_panel.Name = "Services_panel";
-            this.Services_panel.Size = new System.Drawing.Size(322, 409);
-            this.Services_panel.TabIndex = 6;
-            // 
-            // Services
-            // 
-            this.Services.AutoSize = true;
-            this.Services.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.Services.Font = new System.Drawing.Font("Rockwell Condensed", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Services.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Services.Location = new System.Drawing.Point(54, 12);
-            this.Services.Name = "Services";
-            this.Services.Size = new System.Drawing.Size(213, 75);
-            this.Services.TabIndex = 1;
-            this.Services.Text = "Service\'s";
-            // 
-            // pbServices
-            // 
-            this.pbServices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.Serlbl_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbServices.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pbServices.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbServices.BackgroundImage")));
-            this.pbServices.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbServices.Location = new System.Drawing.Point(8, 95);
-            this.pbServices.Name = "pbServices";
-            this.pbServices.Size = new System.Drawing.Size(306, 274);
-            this.pbServices.TabIndex = 1;
-            this.pbServices.TabStop = false;
+            this.Serlbl_panel.Controls.Add(this.Service_lbl);
+            this.Serlbl_panel.Location = new System.Drawing.Point(602, 246);
+            this.Serlbl_panel.Name = "Serlbl_panel";
+            this.Serlbl_panel.Size = new System.Drawing.Size(156, 48);
+            this.Serlbl_panel.TabIndex = 4;
+            // 
+            // Service_lbl
+            // 
+            this.Service_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Service_lbl.AutoSize = true;
+            this.Service_lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(71)))), ((int)(((byte)(161)))));
+            this.Service_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Service_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.Service_lbl.Location = new System.Drawing.Point(14, 2);
+            this.Service_lbl.Name = "Service_lbl";
+            this.Service_lbl.Size = new System.Drawing.Size(134, 47);
+            this.Service_lbl.TabIndex = 3;
+            this.Service_lbl.Text = "Service";
+            // 
+            // Menu_tlp
+            // 
+            this.Menu_tlp.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Menu_tlp.ColumnCount = 2;
+            this.Menu_tlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.91361F));
+            this.Menu_tlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.33186F));
+            this.Menu_tlp.Controls.Add(this.Appointment_panel, 0, 0);
+            this.Menu_tlp.Controls.Add(this.Service_panel, 1, 0);
+            this.Menu_tlp.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.Menu_tlp.Location = new System.Drawing.Point(152, 267);
+            this.Menu_tlp.Name = "Menu_tlp";
+            this.Menu_tlp.Padding = new System.Windows.Forms.Padding(50, 20, 50, 20);
+            this.Menu_tlp.RowCount = 1;
+            this.Menu_tlp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.Menu_tlp.Size = new System.Drawing.Size(724, 314);
+            this.Menu_tlp.TabIndex = 0;
             // 
             // Appointment_panel
             // 
-            this.Appointment_panel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Appointment_panel.Controls.Add(this.Appointment);
-            this.Appointment_panel.Controls.Add(this.pictureBox1);
-            this.Appointment_panel.Controls.Add(this.pbAppointment);
-            this.Appointment_panel.Location = new System.Drawing.Point(8, 139);
+            this.Appointment_panel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Appointment_panel.BackgroundImage")));
+            this.Appointment_panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Appointment_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Appointment_panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Appointment_panel.Location = new System.Drawing.Point(60, 30);
+            this.Appointment_panel.Margin = new System.Windows.Forms.Padding(10);
             this.Appointment_panel.Name = "Appointment_panel";
-            this.Appointment_panel.Size = new System.Drawing.Size(327, 409);
-            this.Appointment_panel.TabIndex = 3;
+            this.Appointment_panel.Size = new System.Drawing.Size(313, 254);
+            this.Appointment_panel.TabIndex = 1;
             // 
-            // Appointment
+            // Service_panel
             // 
-            this.Appointment.AutoSize = true;
-            this.Appointment.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.Appointment.Font = new System.Drawing.Font("Rockwell Condensed", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Appointment.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Appointment.Location = new System.Drawing.Point(24, 12);
-            this.Appointment.Name = "Appointment";
-            this.Appointment.Size = new System.Drawing.Size(284, 75);
-            this.Appointment.TabIndex = 0;
-            this.Appointment.Text = "Appointment";
+            this.Service_panel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Service_panel.BackgroundImage")));
+            this.Service_panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Service_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Service_panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Service_panel.Location = new System.Drawing.Point(393, 30);
+            this.Service_panel.Margin = new System.Windows.Forms.Padding(10);
+            this.Service_panel.Name = "Service_panel";
+            this.Service_panel.Size = new System.Drawing.Size(271, 254);
+            this.Service_panel.TabIndex = 2;
             // 
-            // pictureBox1
+            // LogoTitile_panel
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 95);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(305, 274);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.LogoTitile_panel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.LogoTitile_panel.Controls.Add(this.Menulbl);
+            this.LogoTitile_panel.Location = new System.Drawing.Point(376, 29);
+            this.LogoTitile_panel.Name = "LogoTitile_panel";
+            this.LogoTitile_panel.Size = new System.Drawing.Size(421, 128);
+            this.LogoTitile_panel.TabIndex = 1;
             // 
-            // pbAppointment
+            // Menulbl
             // 
-            this.pbAppointment.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pbAppointment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbAppointment.Location = new System.Drawing.Point(11, 95);
-            this.pbAppointment.Name = "pbAppointment";
-            this.pbAppointment.Size = new System.Drawing.Size(306, 274);
-            this.pbAppointment.TabIndex = 0;
-            this.pbAppointment.TabStop = false;
+            this.Menulbl.AutoSize = true;
+            this.Menulbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(71)))), ((int)(((byte)(161)))));
+            this.Menulbl.Font = new System.Drawing.Font("Segoe UI Semibold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menulbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.Menulbl.Location = new System.Drawing.Point(18, 28);
+            this.Menulbl.Name = "Menulbl";
+            this.Menulbl.Size = new System.Drawing.Size(385, 86);
+            this.Menulbl.TabIndex = 0;
+            this.Menulbl.Text = "Clinic Portal";
             // 
-            // panel2
+            // logo_pb
             // 
-            this.panel2.Location = new System.Drawing.Point(350, 139);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(313, 409);
-            this.panel2.TabIndex = 7;
+            this.logo_pb.Image = ((System.Drawing.Image)(resources.GetObject("logo_pb.Image")));
+            this.logo_pb.Location = new System.Drawing.Point(56, 8);
+            this.logo_pb.Name = "logo_pb";
+            this.logo_pb.Size = new System.Drawing.Size(314, 252);
+            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo_pb.TabIndex = 1;
+            this.logo_pb.TabStop = false;
             // 
-            // panel3
-            // 
-            this.panel3.Location = new System.Drawing.Point(685, 139);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(309, 409);
-            this.panel3.TabIndex = 8;
-            // 
-            // DentisPanel
-            // 
-            this.DentisPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("DentisPanel.BackgroundImage")));
-            this.DentisPanel.Location = new System.Drawing.Point(685, 139);
-            this.DentisPanel.Name = "DentisPanel";
-            this.DentisPanel.Size = new System.Drawing.Size(309, 409);
-            this.DentisPanel.TabIndex = 9;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label1.Font = new System.Drawing.Font("Rockwell Condensed", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(331, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(395, 113);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Main Menu";
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(7, 139);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(328, 409);
-            this.panel1.TabIndex = 4;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // menu
+            // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Controls.Add(this.Dentist_Panel);
-            this.Controls.Add(this.Services_panel);
-            this.Controls.Add(this.Appointment_panel);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.DentisPanel);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.panel1);
-            this.Name = "menu";
-            this.Size = new System.Drawing.Size(1017, 546);
-            this.Load += new System.EventHandler(this.menu_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbDentist)).EndInit();
-            this.Dentist_Panel.ResumeLayout(false);
-            this.Dentist_Panel.PerformLayout();
-            this.Services_panel.ResumeLayout(false);
-            this.Services_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbServices)).EndInit();
-            this.Appointment_panel.ResumeLayout(false);
-            this.Appointment_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbAppointment)).EndInit();
+            this.Controls.Add(this.Main_panel);
+            this.Name = "Menu";
+            this.Size = new System.Drawing.Size(1003, 581);
+            this.Main_panel.ResumeLayout(false);
+            this.Apt_panel.ResumeLayout(false);
+            this.Apt_panel.PerformLayout();
+            this.Serlbl_panel.ResumeLayout(false);
+            this.Serlbl_panel.PerformLayout();
+            this.Menu_tlp.ResumeLayout(false);
+            this.LogoTitile_panel.ResumeLayout(false);
+            this.LogoTitile_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pbDentist;
-        private System.Windows.Forms.Panel Dentist_Panel;
-        private System.Windows.Forms.Label Dentist;
-        private System.Windows.Forms.Panel Services_panel;
-        private System.Windows.Forms.Label Services;
-        private System.Windows.Forms.PictureBox pbServices;
+        private System.Windows.Forms.Panel Main_panel;
+        private System.Windows.Forms.Panel Apt_panel;
+        private System.Windows.Forms.Label Appointment_lbl;
+        private System.Windows.Forms.Panel Serlbl_panel;
+        private System.Windows.Forms.Label Service_lbl;
+        private System.Windows.Forms.TableLayoutPanel Menu_tlp;
         private System.Windows.Forms.Panel Appointment_panel;
-        private System.Windows.Forms.Label Appointment;
-        private System.Windows.Forms.PictureBox pbAppointment;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel DentisPanel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel Service_panel;
+        private System.Windows.Forms.Panel LogoTitile_panel;
+        private System.Windows.Forms.Label Menulbl;
+        private System.Windows.Forms.PictureBox logo_pb;
     }
 }
