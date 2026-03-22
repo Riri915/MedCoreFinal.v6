@@ -47,7 +47,7 @@
             this.dgvActivityLogs.Name = "dgvActivityLogs";
             this.dgvActivityLogs.RowHeadersWidth = 51;
             this.dgvActivityLogs.RowTemplate.Height = 24;
-            this.dgvActivityLogs.Size = new System.Drawing.Size(1072, 372);
+            this.dgvActivityLogs.Size = new System.Drawing.Size(1072, 341);
             this.dgvActivityLogs.TabIndex = 0;
             // 
             // txtSearch
@@ -67,7 +67,7 @@
             this.dgvPanel.Controls.Add(this.dgvActivityLogs);
             this.dgvPanel.Location = new System.Drawing.Point(3, 167);
             this.dgvPanel.Name = "dgvPanel";
-            this.dgvPanel.Size = new System.Drawing.Size(1072, 372);
+            this.dgvPanel.Size = new System.Drawing.Size(1072, 341);
             this.dgvPanel.TabIndex = 2;
             // 
             // label1

@@ -111,6 +111,37 @@ namespace CoreLibrary
                     new MySqlCommand(createActivityLogsTable, dbConn).ExecuteNonQuery();
 
 
+                    string createReturnTransactionsTable = @"
+                        create table if not exists return_transactions (
+                            returnid int auto_increment primary key,
+                            transactionid varchar(20) not null,
+                            productid varchar(50) not null,
+                            productname varchar(100) not null,
+                            quantityreturned int not null,
+                            conditionstatus varchar(50),
+                            refundamount decimal(10,2) not null,
+                            reasonforreturn varchar(255),
+                            cashier varchar(100),
+                            returndate datetime default current_timestamp,
+                            totalrefundamount decimal(10,2)
+                        );
+                    ";
+                    new MySqlCommand(createReturnTransactionsTable, dbConn).ExecuteNonQuery();
+
+                    string createDiscountRecordsTable = @"
+                        CREATE TABLE IF NOT EXISTS discount_records (
+                            id INT AUTO_INCREMENT PRIMARY KEY,
+                            DiscountType VARCHAR(50),
+                            FirstName VARCHAR(50),
+                            MiddleInitial VARCHAR(10),
+                            LastName VARCHAR(50),
+                            IDNumber VARCHAR(20),
+                            DateCreated DATETIME DEFAULT CURRENT_TIMESTAMP
+                        );
+                    ";
+                    new MySqlCommand(createDiscountRecordsTable, dbConn).ExecuteNonQuery();
+
+
                     InsertDefaultUser(dbConn, "EMP001", "System", "Admin", "admin", "admin123", "Admin");
                     InsertDefaultUser(dbConn, "EMP002", "Onic", "Austria", "cashier", "cashier123", "Cashier");
                     InsertDefaultUser(dbConn, "EMP003", "Sherwin", "Naelgas", "doctor", "doctor123", "Doctor");
