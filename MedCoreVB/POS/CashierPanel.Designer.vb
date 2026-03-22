@@ -23,7 +23,42 @@ Partial Class CashierPanel
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.txtStatus = New System.Windows.Forms.TextBox()
+        Me.txtStock = New System.Windows.Forms.TextBox()
+        Me.LastName = New System.Windows.Forms.TextBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.txtEmployeeID = New System.Windows.Forms.TextBox()
+        Me.FirstName = New System.Windows.Forms.TextBox()
+        Me.txtPosition = New System.Windows.Forms.TextBox()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.txtExpiration = New System.Windows.Forms.TextBox()
+        Me.txtPrice = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txtProductName = New System.Windows.Forms.TextBox()
+        Me.textProductID = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.PanelCart = New System.Windows.Forms.Panel()
+        Me.dgvCart = New System.Windows.Forms.DataGridView()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.datelabel = New System.Windows.Forms.Label()
+        Me.btnLogOut = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.txtQuantity = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.addtocart = New System.Windows.Forms.Button()
+        Me.SearchBar = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.btnReturn = New System.Windows.Forms.Button()
@@ -35,54 +70,21 @@ Partial Class CashierPanel
         Me.txtTotal = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txtBarcode = New System.Windows.Forms.TextBox()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.btnCheckout = New System.Windows.Forms.Button()
         Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.LastName = New System.Windows.Forms.TextBox()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.txtEmployeeID = New System.Windows.Forms.TextBox()
-        Me.FirstName = New System.Windows.Forms.TextBox()
-        Me.txtPosition = New System.Windows.Forms.TextBox()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.dgvCart = New System.Windows.Forms.DataGridView()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.txtBarcode = New System.Windows.Forms.TextBox()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.txtExpiration = New System.Windows.Forms.TextBox()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.txtStatus = New System.Windows.Forms.TextBox()
-        Me.txtStock = New System.Windows.Forms.TextBox()
-        Me.txtPrice = New System.Windows.Forms.TextBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.txtProductName = New System.Windows.Forms.TextBox()
-        Me.textProductID = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.PanelCart = New System.Windows.Forms.Panel()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.datelabel = New System.Windows.Forms.Label()
-        Me.btnLogOut = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.addtocart = New System.Windows.Forms.Button()
-        Me.SearchBar = New System.Windows.Forms.TextBox()
+        Me.IdleTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.btnDiscount = New System.Windows.Forms.Button()
+        Me.PanelCart.SuspendLayout()
+        CType(Me.dgvCart, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
+        Me.Panel4.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel6.SuspendLayout()
         Me.Panel7.SuspendLayout()
-        CType(Me.dgvCart, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
-        Me.PanelCart.SuspendLayout()
-        Me.Panel3.SuspendLayout()
-        Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtQuantity
@@ -243,7 +245,7 @@ Partial Class CashierPanel
         Me.Label6.TabIndex = 4
         Me.Label6.Text = "Quantity :"
         '
-        'Panel6
+        'Label14
         '
         Me.Panel6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel6.BackColor = System.Drawing.SystemColors.ControlLight
@@ -254,7 +256,7 @@ Partial Class CashierPanel
         Me.Panel6.Size = New System.Drawing.Size(379, 94)
         Me.Panel6.TabIndex = 12
         '
-        'btnCheckout
+        'txtStatus
         '
         Me.btnCheckout.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCheckout.BackColor = System.Drawing.Color.Lime
@@ -268,7 +270,7 @@ Partial Class CashierPanel
         Me.btnCheckout.Text = "Checkout"
         Me.btnCheckout.UseVisualStyleBackColor = False
         '
-        'Panel7
+        'txtStock
         '
         Me.Panel7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -293,7 +295,7 @@ Partial Class CashierPanel
         '
         Me.LastName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LastName.BackColor = System.Drawing.Color.White
+        Me.LastName.BackColor = System.Drawing.SystemColors.ControlLight
         Me.LastName.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.LastName.Enabled = False
         Me.LastName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -330,7 +332,7 @@ Partial Class CashierPanel
         '
         Me.txtEmployeeID.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtEmployeeID.BackColor = System.Drawing.Color.White
+        Me.txtEmployeeID.BackColor = System.Drawing.SystemColors.ControlLight
         Me.txtEmployeeID.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtEmployeeID.Enabled = False
         Me.txtEmployeeID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -344,7 +346,7 @@ Partial Class CashierPanel
         '
         Me.FirstName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FirstName.BackColor = System.Drawing.Color.White
+        Me.FirstName.BackColor = System.Drawing.SystemColors.ControlLight
         Me.FirstName.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.FirstName.Enabled = False
         Me.FirstName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -356,7 +358,7 @@ Partial Class CashierPanel
         '
         'txtPosition
         '
-        Me.txtPosition.BackColor = System.Drawing.Color.White
+        Me.txtPosition.BackColor = System.Drawing.SystemColors.ControlLight
         Me.txtPosition.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtPosition.Enabled = False
         Me.txtPosition.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -398,7 +400,7 @@ Partial Class CashierPanel
         Me.Label15.TabIndex = 12
         Me.Label15.Text = "Employee Information :"
         '
-        'Label13
+        'txtExpiration
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -741,6 +743,266 @@ Partial Class CashierPanel
         Me.SearchBar.Size = New System.Drawing.Size(579, 32)
         Me.SearchBar.TabIndex = 0
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(709, 63)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(104, 18)
+        Me.Label8.TabIndex = 7
+        Me.Label8.Text = "Unit Status     :"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(37, 120)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(95, 21)
+        Me.Label13.TabIndex = 6
+        Me.Label13.Text = "First Name :"
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 1000
+        '
+        'Panel5
+        '
+        Me.Panel5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel5.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Panel5.Controls.Add(Me.btnDiscount)
+        Me.Panel5.Controls.Add(Me.btnReturn)
+        Me.Panel5.Controls.Add(Me.btnEdit)
+        Me.Panel5.Controls.Add(Me.btnRemove)
+        Me.Panel5.Controls.Add(Me.txtChange)
+        Me.Panel5.Controls.Add(Me.Label12)
+        Me.Panel5.Controls.Add(Me.txtPayment)
+        Me.Panel5.Controls.Add(Me.txtTotal)
+        Me.Panel5.Controls.Add(Me.Label11)
+        Me.Panel5.Controls.Add(Me.Label10)
+        Me.Panel5.Location = New System.Drawing.Point(1172, 315)
+        Me.Panel5.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(367, 434)
+        Me.Panel5.TabIndex = 18
+        '
+        'btnReturn
+        '
+        Me.btnReturn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnReturn.BackColor = System.Drawing.Color.DarkGray
+        Me.btnReturn.Font = New System.Drawing.Font("Calibri", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnReturn.ForeColor = System.Drawing.SystemColors.InfoText
+        Me.btnReturn.Location = New System.Drawing.Point(24, 136)
+        Me.btnReturn.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnReturn.Name = "btnReturn"
+        Me.btnReturn.Size = New System.Drawing.Size(308, 57)
+        Me.btnReturn.TabIndex = 8
+        Me.btnReturn.Text = "Return"
+        Me.btnReturn.UseVisualStyleBackColor = False
+        '
+        'btnEdit
+        '
+        Me.btnEdit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnEdit.BackColor = System.Drawing.Color.DeepSkyBlue
+        Me.btnEdit.Font = New System.Drawing.Font("Calibri", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnEdit.ForeColor = System.Drawing.SystemColors.InfoText
+        Me.btnEdit.Location = New System.Drawing.Point(24, 14)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(308, 57)
+        Me.btnEdit.TabIndex = 6
+        Me.btnEdit.Text = "Edit"
+        Me.btnEdit.UseVisualStyleBackColor = False
+        '
+        'btnRemove
+        '
+        Me.btnRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnRemove.BackColor = System.Drawing.Color.LightCoral
+        Me.btnRemove.Font = New System.Drawing.Font("Calibri", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRemove.ForeColor = System.Drawing.SystemColors.InfoText
+        Me.btnRemove.Location = New System.Drawing.Point(25, 75)
+        Me.btnRemove.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnRemove.Name = "btnRemove"
+        Me.btnRemove.Size = New System.Drawing.Size(308, 57)
+        Me.btnRemove.TabIndex = 7
+        Me.btnRemove.Text = "Remove"
+        Me.btnRemove.UseVisualStyleBackColor = False
+        '
+        'txtChange
+        '
+        Me.txtChange.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtChange.BackColor = System.Drawing.Color.White
+        Me.txtChange.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtChange.Enabled = False
+        Me.txtChange.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtChange.Location = New System.Drawing.Point(225, 370)
+        Me.txtChange.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtChange.Name = "txtChange"
+        Me.txtChange.Size = New System.Drawing.Size(130, 27)
+        Me.txtChange.TabIndex = 5
+        '
+        'Label12
+        '
+        Me.Label12.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(221, 344)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(70, 21)
+        Me.Label12.TabIndex = 4
+        Me.Label12.Text = "Change :"
+        '
+        'txtPayment
+        '
+        Me.txtPayment.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtPayment.BackColor = System.Drawing.Color.White
+        Me.txtPayment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtPayment.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPayment.Location = New System.Drawing.Point(38, 371)
+        Me.txtPayment.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtPayment.Name = "txtPayment"
+        Me.txtPayment.Size = New System.Drawing.Size(125, 27)
+        Me.txtPayment.TabIndex = 3
+        '
+        'txtTotal
+        '
+        Me.txtTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtTotal.BackColor = System.Drawing.Color.White
+        Me.txtTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtTotal.Enabled = False
+        Me.txtTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotal.Location = New System.Drawing.Point(102, 285)
+        Me.txtTotal.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.Size = New System.Drawing.Size(254, 30)
+        Me.txtTotal.TabIndex = 1
+        '
+        'Label11
+        '
+        Me.Label11.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(34, 344)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(142, 21)
+        Me.Label11.TabIndex = 2
+        Me.Label11.Text = "Payment Received:"
+        '
+        'Label10
+        '
+        Me.Label10.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(34, 290)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(62, 24)
+        Me.Label10.TabIndex = 0
+        Me.Label10.Text = "Total :"
+        '
+        'txtBarcode
+        '
+        Me.txtBarcode.BackColor = System.Drawing.Color.White
+        Me.txtBarcode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtBarcode.Enabled = False
+        Me.txtBarcode.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBarcode.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.txtBarcode.Location = New System.Drawing.Point(207, 30)
+        Me.txtBarcode.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtBarcode.Name = "txtBarcode"
+        Me.txtBarcode.Size = New System.Drawing.Size(415, 27)
+        Me.txtBarcode.TabIndex = 15
+        '
+        'Panel6
+        '
+        Me.Panel6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel6.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Panel6.Controls.Add(Me.btnCheckout)
+        Me.Panel6.Location = New System.Drawing.Point(1172, 750)
+        Me.Panel6.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel6.Name = "Panel6"
+        Me.Panel6.Size = New System.Drawing.Size(379, 94)
+        Me.Panel6.TabIndex = 19
+        '
+        'btnCheckout
+        '
+        Me.btnCheckout.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCheckout.BackColor = System.Drawing.Color.Lime
+        Me.btnCheckout.Font = New System.Drawing.Font("Calibri", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCheckout.ForeColor = System.Drawing.SystemColors.InfoText
+        Me.btnCheckout.Location = New System.Drawing.Point(0, 0)
+        Me.btnCheckout.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnCheckout.Name = "btnCheckout"
+        Me.btnCheckout.Size = New System.Drawing.Size(376, 94)
+        Me.btnCheckout.TabIndex = 5
+        Me.btnCheckout.Text = "Checkout"
+        Me.btnCheckout.UseVisualStyleBackColor = False
+        '
+        'Panel7
+        '
+        Me.Panel7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel7.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Panel7.Controls.Add(Me.LastName)
+        Me.Panel7.Controls.Add(Me.Label20)
+        Me.Panel7.Controls.Add(Me.Label19)
+        Me.Panel7.Controls.Add(Me.txtEmployeeID)
+        Me.Panel7.Controls.Add(Me.FirstName)
+        Me.Panel7.Controls.Add(Me.txtPosition)
+        Me.Panel7.Controls.Add(Me.Label17)
+        Me.Panel7.Controls.Add(Me.Label16)
+        Me.Panel7.Controls.Add(Me.Label15)
+        Me.Panel7.Controls.Add(Me.Label13)
+        Me.Panel7.Location = New System.Drawing.Point(1172, 53)
+        Me.Panel7.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Size = New System.Drawing.Size(379, 258)
+        Me.Panel7.TabIndex = 20
+        '
+        'Panel2
+        '
+        Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel2.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Panel2.Controls.Add(Me.txtBarcode)
+        Me.Panel2.Controls.Add(Me.Label18)
+        Me.Panel2.Controls.Add(Me.txtExpiration)
+        Me.Panel2.Controls.Add(Me.Label14)
+        Me.Panel2.Controls.Add(Me.txtStatus)
+        Me.Panel2.Controls.Add(Me.txtStock)
+        Me.Panel2.Controls.Add(Me.txtPrice)
+        Me.Panel2.Controls.Add(Me.Label9)
+        Me.Panel2.Controls.Add(Me.Label8)
+        Me.Panel2.Controls.Add(Me.Label7)
+        Me.Panel2.Controls.Add(Me.txtProductName)
+        Me.Panel2.Controls.Add(Me.textProductID)
+        Me.Panel2.Controls.Add(Me.Label5)
+        Me.Panel2.Controls.Add(Me.Label4)
+        Me.Panel2.Controls.Add(Me.Label3)
+        Me.Panel2.Location = New System.Drawing.Point(-8, 110)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(1173, 153)
+        Me.Panel2.TabIndex = 15
+        '
+        'IdleTimer
+        '
+        Me.IdleTimer.Interval = 1000
+        '
+        'btnDiscount
+        '
+        Me.btnDiscount.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnDiscount.BackColor = System.Drawing.Color.Firebrick
+        Me.btnDiscount.Font = New System.Drawing.Font("Calibri", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDiscount.ForeColor = System.Drawing.SystemColors.InfoText
+        Me.btnDiscount.Location = New System.Drawing.Point(24, 197)
+        Me.btnDiscount.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnDiscount.Name = "btnDiscount"
+        Me.btnDiscount.Size = New System.Drawing.Size(308, 57)
+        Me.btnDiscount.TabIndex = 9
+        Me.btnDiscount.Text = "Apply Discount"
+        Me.btnDiscount.UseVisualStyleBackColor = False
+        '
         'CashierPanel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -758,24 +1020,59 @@ Partial Class CashierPanel
         Me.Name = "CashierPanel"
         Me.Text = "CashierPanel"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.PanelCart.ResumeLayout(False)
+        CType(Me.dgvCart, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
         Me.Panel5.ResumeLayout(False)
         Me.Panel5.PerformLayout()
         Me.Panel6.ResumeLayout(False)
         Me.Panel7.ResumeLayout(False)
         Me.Panel7.PerformLayout()
-        CType(Me.dgvCart, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        Me.PanelCart.ResumeLayout(False)
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
-        Me.Panel4.ResumeLayout(False)
-        Me.Panel4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
 
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents txtStatus As TextBox
+    Friend WithEvents txtStock As TextBox
+    Friend WithEvents LastName As TextBox
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label19 As Label
+    Friend WithEvents txtEmployeeID As TextBox
+    Friend WithEvents FirstName As TextBox
+    Friend WithEvents txtPosition As TextBox
+    Friend WithEvents Label17 As Label
+    Friend WithEvents Label16 As Label
+    Private WithEvents Label15 As Label
+    Friend WithEvents txtExpiration As TextBox
+    Friend WithEvents txtPrice As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents txtProductName As TextBox
+    Friend WithEvents textProductID As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents PanelCart As Panel
+    Friend WithEvents dgvCart As DataGridView
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents datelabel As Label
+    Friend WithEvents btnLogOut As Button
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents Label6 As Label
     Friend WithEvents txtQuantity As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents addtocart As Button
+    Friend WithEvents SearchBar As TextBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label13 As Label
     Friend WithEvents Timer1 As Timer
     Friend WithEvents Panel5 As Panel
     Friend WithEvents btnReturn As Button
@@ -787,44 +1084,11 @@ Partial Class CashierPanel
     Friend WithEvents txtTotal As TextBox
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
-    Friend WithEvents Label6 As Label
+    Friend WithEvents txtBarcode As TextBox
     Friend WithEvents Panel6 As Panel
     Friend WithEvents btnCheckout As Button
     Friend WithEvents Panel7 As Panel
-    Friend WithEvents LastName As TextBox
-    Friend WithEvents Label20 As Label
-    Friend WithEvents Label19 As Label
-    Friend WithEvents txtEmployeeID As TextBox
-    Friend WithEvents FirstName As TextBox
-    Friend WithEvents txtPosition As TextBox
-    Friend WithEvents Label17 As Label
-    Friend WithEvents Label16 As Label
-    Private WithEvents Label15 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents dgvCart As DataGridView
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents txtBarcode As TextBox
-    Friend WithEvents Label18 As Label
-    Friend WithEvents txtExpiration As TextBox
-    Friend WithEvents Label14 As Label
-    Friend WithEvents txtStatus As TextBox
-    Friend WithEvents txtStock As TextBox
-    Friend WithEvents txtPrice As TextBox
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Label7 As Label
-    Friend WithEvents txtProductName As TextBox
-    Friend WithEvents textProductID As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents PanelCart As Panel
-    Friend WithEvents Panel3 As Panel
-    Friend WithEvents datelabel As Label
-    Friend WithEvents btnLogOut As Button
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Panel4 As Panel
-    Friend WithEvents addtocart As Button
-    Friend WithEvents SearchBar As TextBox
+    Friend WithEvents IdleTimer As Timer
+    Friend WithEvents btnDiscount As Button
 End Class

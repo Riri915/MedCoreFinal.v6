@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.MedCoreVB.LoginForm
+            Me.MainForm = Global.MedCoreVB.CashierPanel
         End Sub
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
