@@ -19,9 +19,7 @@ namespace MedCoreC_
 
         private void UpperPanel_Paint(object sender, PaintEventArgs e)
         {
-            LabelPanelGradientStyler.Apply(panel1);
             LabelPanelGradientStyler.Apply(panel2);
-            ActivityLogGridStyler.ApplyRoundedEdges(panel1);
             ActivityLogGridStyler.ApplyRoundedEdges(panel2);
 
         }

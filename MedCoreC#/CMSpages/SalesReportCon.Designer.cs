@@ -57,7 +57,7 @@
             this.dgvSalesReport.Name = "dgvSalesReport";
             this.dgvSalesReport.RowHeadersWidth = 51;
             this.dgvSalesReport.RowTemplate.Height = 24;
-            this.dgvSalesReport.Size = new System.Drawing.Size(1196, 346);
+            this.dgvSalesReport.Size = new System.Drawing.Size(1196, 304);
             this.dgvSalesReport.TabIndex = 0;
             // 
             // lblReportTitle
@@ -152,7 +152,7 @@
             this.Panel4.Controls.Add(this.dgvSalesReport);
             this.Panel4.Location = new System.Drawing.Point(0, 314);
             this.Panel4.Name = "Panel4";
-            this.Panel4.Size = new System.Drawing.Size(1196, 346);
+            this.Panel4.Size = new System.Drawing.Size(1196, 304);
             this.Panel4.TabIndex = 53;
             // 
             // pnlReportType
