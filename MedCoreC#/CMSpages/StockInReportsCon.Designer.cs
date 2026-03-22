@@ -25,15 +25,15 @@
             this.LabelPanel = new System.Windows.Forms.Panel();
             this.lblStockInReports = new System.Windows.Forms.Label();
             this.pnlReportType = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblReportType = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.btnMonth = new System.Windows.Forms.Button();
             this.btnWeek = new System.Windows.Forms.Button();
             this.btnToday = new System.Windows.Forms.Button();
             this.pnlDgv = new System.Windows.Forms.Panel();
             this.dgvStockIn = new System.Windows.Forms.DataGridView();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.Label3 = new System.Windows.Forms.Label();
             this.LabelPanel.SuspendLayout();
             this.pnlReportType.SuspendLayout();
             this.pnlButtons.SuspendLayout();
@@ -49,7 +49,7 @@
             this.LabelPanel.Controls.Add(this.lblStockInReports);
             this.LabelPanel.Location = new System.Drawing.Point(0, 0);
             this.LabelPanel.Name = "LabelPanel";
-            this.LabelPanel.Size = new System.Drawing.Size(1280, 50);
+            this.LabelPanel.Size = new System.Drawing.Size(1280, 79);
             this.LabelPanel.TabIndex = 3;
             // 
             // lblStockInReports
@@ -57,63 +57,43 @@
             this.lblStockInReports.AutoSize = true;
             this.lblStockInReports.Font = new System.Drawing.Font("Calibri", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStockInReports.ForeColor = System.Drawing.Color.Transparent;
-            this.lblStockInReports.Location = new System.Drawing.Point(35, 5);
+            this.lblStockInReports.Location = new System.Drawing.Point(36, 18);
             this.lblStockInReports.Name = "lblStockInReports";
             this.lblStockInReports.Size = new System.Drawing.Size(243, 40);
             this.lblStockInReports.TabIndex = 0;
             this.lblStockInReports.Text = "Stock-In Reports";
+            this.lblStockInReports.Click += new System.EventHandler(this.lblStockInReports_Click);
             // 
             // pnlReportType
             // 
             this.pnlReportType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlReportType.BackColor = System.Drawing.Color.RoyalBlue;
-            this.pnlReportType.Controls.Add(this.label1);
-            this.pnlReportType.Controls.Add(this.lblReportType);
             this.pnlReportType.Controls.Add(this.txtSearch);
-            this.pnlReportType.Location = new System.Drawing.Point(0, 143);
+            this.pnlReportType.Controls.Add(this.Label3);
+            this.pnlReportType.Controls.Add(this.lblReportType);
+            this.pnlReportType.Location = new System.Drawing.Point(0, 208);
             this.pnlReportType.Name = "pnlReportType";
-            this.pnlReportType.Size = new System.Drawing.Size(1280, 50);
+            this.pnlReportType.Size = new System.Drawing.Size(1280, 79);
             this.pnlReportType.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(760, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 28);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Search :";
             // 
             // lblReportType
             // 
             this.lblReportType.AutoSize = true;
             this.lblReportType.Font = new System.Drawing.Font("Calibri", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReportType.ForeColor = System.Drawing.Color.Transparent;
-            this.lblReportType.Location = new System.Drawing.Point(35, 5);
+            this.lblReportType.Location = new System.Drawing.Point(36, 20);
             this.lblReportType.Name = "lblReportType";
             this.lblReportType.Size = new System.Drawing.Size(220, 40);
             this.lblReportType.TabIndex = 0;
             this.lblReportType.Text = "Today\'s Report";
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(852, 10);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(410, 34);
-            this.txtSearch.TabIndex = 8;
             // 
             // pnlButtons
             // 
             this.pnlButtons.Controls.Add(this.btnMonth);
             this.pnlButtons.Controls.Add(this.btnWeek);
             this.pnlButtons.Controls.Add(this.btnToday);
-            this.pnlButtons.Location = new System.Drawing.Point(0, 68);
+            this.pnlButtons.Location = new System.Drawing.Point(0, 112);
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.Size = new System.Drawing.Size(631, 57);
             this.pnlButtons.TabIndex = 5;
@@ -163,9 +143,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlDgv.Controls.Add(this.dgvStockIn);
-            this.pnlDgv.Location = new System.Drawing.Point(0, 211);
+            this.pnlDgv.Location = new System.Drawing.Point(0, 314);
             this.pnlDgv.Name = "pnlDgv";
-            this.pnlDgv.Size = new System.Drawing.Size(1277, 496);
+            this.pnlDgv.Size = new System.Drawing.Size(1277, 367);
             this.pnlDgv.TabIndex = 6;
             // 
             // dgvStockIn
@@ -181,8 +161,30 @@
             this.dgvStockIn.RowHeadersWidth = 51;
             this.dgvStockIn.RowTemplate.Height = 24;
             this.dgvStockIn.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStockIn.Size = new System.Drawing.Size(1277, 496);
+            this.dgvStockIn.Size = new System.Drawing.Size(1277, 367);
             this.dgvStockIn.TabIndex = 0;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(730, 25);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(523, 27);
+            this.txtSearch.TabIndex = 59;
+            // 
+            // Label3
+            // 
+            this.Label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label3.AutoSize = true;
+            this.Label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label3.ForeColor = System.Drawing.Color.White;
+            this.Label3.Location = new System.Drawing.Point(647, 27);
+            this.Label3.Name = "Label3";
+            this.Label3.Size = new System.Drawing.Size(77, 20);
+            this.Label3.TabIndex = 58;
+            this.Label3.Text = "Search : ";
             // 
             // StockInReports
             // 
@@ -218,7 +220,7 @@
         private System.Windows.Forms.Button btnWeek;
         private System.Windows.Forms.Panel pnlDgv;
         private System.Windows.Forms.DataGridView dgvStockIn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtSearch;
+        internal System.Windows.Forms.TextBox txtSearch;
+        internal System.Windows.Forms.Label Label3;
     }
 }

@@ -201,6 +201,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1262, 673);
+            this.ControlBox = false;
             this.Controls.Add(this.contentPanel);
             this.Controls.Add(this.sidebarPanel);
             this.Name = "CMS";
