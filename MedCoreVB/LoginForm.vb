@@ -71,6 +71,10 @@ Public Class LoginForm
 
         If AuthHelper.LoginUser(username, password, account_type) Then
 
+            ResetFields()
+
+            usertxt.Focus()
+
             If account_type.Equals("Admin", StringComparison.OrdinalIgnoreCase) Then
                 Dim cmsForm As New CMS()
                 AddHandler cmsForm.FormClosed, Sub() Me.Show()
@@ -89,8 +93,18 @@ Public Class LoginForm
 
         Else
             MessageBox.Show("Invalid username or password.", "Login Failed")
+
+            ResetFields()
         End If
 
+    End Sub
+    Private Sub ResetFields()
+        usertxt.Text = "Username"
+        usertxt.ForeColor = Color.Gray
+
+        pwtxt.UseSystemPasswordChar = False
+        pwtxt.Text = "Password"
+        pwtxt.ForeColor = Color.Gray
     End Sub
 
 End Class
