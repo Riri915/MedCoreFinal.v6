@@ -3,7 +3,7 @@ Imports System.Text.RegularExpressions
 
 Public Class ReturnPage
     Public Property CurrentCashierName As String
-    Private connStr As String = "server=localhost;userid=root;password=;database=POS"
+    Private connStr As String = "server=localhost;userid=root;password=;database=medcore"
 
     Private Sub ReturnPage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -92,7 +92,7 @@ Public Class ReturnPage
             Exit Sub
         End If
 
-        If Not Regex.IsMatch(transID, "^SB-\d+$") Then
+        If Not Regex.IsMatch(transID, "^MC-\d+$") Then
             MessageBox.Show("Transaction ID must start with 'SB-' followed by numbers (e.g. SB-1001).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
@@ -209,5 +209,9 @@ Public Class ReturnPage
         If e.KeyChar = "."c AndAlso txtRefund.Text.Contains(".") Then
             e.Handled = True
         End If
+    End Sub
+
+    Private Sub txtCashierName_TextChanged(sender As Object, e As EventArgs) Handles txtCashierName.TextChanged
+
     End Sub
 End Class

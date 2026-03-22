@@ -13,7 +13,7 @@ namespace MedCoreC_.CMSpages
 {
     public partial class ReturnedItemsReportCon : UserControl
     {
-        MySqlConnection connection = new MySqlConnection("server=localhost;userid=root;password=;database=stockbitedb");
+        MySqlConnection connection = new MySqlConnection("server=localhost;userid=root;password=;database=medcore");
 
         public ReturnedItemsReportCon()
         {

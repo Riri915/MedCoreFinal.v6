@@ -7,7 +7,7 @@ namespace MedCoreC_.CMSpages
 {
     public partial class SalesReportCon : UserControl
     {
-        string connectionString = "server=localhost;userid=root;password=;database=StockBiteDB";
+        string connectionString = "server=localhost;userid=root;password=;database=medcore";
         MySqlConnection connection;
 
         public SalesReportCon()
