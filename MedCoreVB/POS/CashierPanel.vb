@@ -1,10 +1,10 @@
 ﻿Imports System.Collections.Specialized.BitVector32
-Imports System.Data.SqlClient
 Imports CoreLibrary
 Imports MedCoreC_
 Imports MySql.Data.MySqlClient
 
 Public Class CashierPanel
+    Private isSessionExpired As Boolean = False
     Private originalTotal As Decimal = 0
     Private discountAmount As Decimal = 0
     Public Property EmployeeID As String
@@ -12,7 +12,7 @@ Public Class CashierPanel
     Public Property LastNameValue As String
     Public Property Position As String
 
-    Private connStr As String = "server=localhost;userid=root;password=;database=POS"
+    Private connStr As String = "server=localhost;userid=root;password=;database=medcore"
     Private isLoggingOut As Boolean = False
 
     Dim idleTime As Integer = 0
@@ -21,8 +21,13 @@ Public Class CashierPanel
         isLoggingOut = True
         IdleTimer.Stop()
         Timer1.Stop()
-        Me.Hide()
+        Me.Close()
         LoginForm.Show()
+    End Sub
+    Protected Overrides Sub OnFormClosed(e As FormClosedEventArgs)
+        IdleTimer.Stop()
+        Timer1.Stop()
+        MyBase.OnFormClosed(e)
     End Sub
     Private Sub AnyUserActivity(sender As Object, e As EventArgs) _
     Handles Me.MouseMove, Me.MouseClick, Me.KeyDown, Me.KeyPress
@@ -77,12 +82,13 @@ Public Class CashierPanel
     End Sub
 
     Private Sub IdleTimer_Tick(sender As Object, e As EventArgs) Handles IdleTimer.Tick
+        If isSessionExpired Then Exit Sub
         idleTime += 1
-
         If idleTime >= MAX_IDLE Then
+            isSessionExpired = True
+            IdleTimer.Stop()
             MessageBox.Show("Session expired due to inactivity.", "Logged Out",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning)
-
             LogoutUser()
         End If
     End Sub
@@ -119,7 +125,7 @@ Public Class CashierPanel
         End If
     End Sub
 
-    Private Sub addtocart_Click(sender As Object, e As EventArgs)
+    Private Sub addtocart_Click(sender As Object, e As EventArgs) Handles addtocart.Click
         If textProductID.Text = "" Or txtProductName.Text = "" Then
             MessageBox.Show("Please search and select a valid product first.")
             Exit Sub
@@ -199,7 +205,7 @@ Public Class CashierPanel
 
     End Sub
 
-    Private Sub SearchBar_TextChanged(sender As Object, e As EventArgs)
+    Private Sub SearchBar_TextChanged(sender As Object, e As EventArgs) Handles SearchBar.TextChanged
         Dim keyword As String = SearchBar.Text.Trim()
 
         Try
@@ -208,7 +214,7 @@ Public Class CashierPanel
                 Dim query As String = "
             SELECT * FROM products 
             WHERE Barcode = @kw 
-               OR ProductID = @kw 
+               OR ProductID = CAST(@kw AS UNSIGNED)
                OR ProductName LIKE CONCAT('%', @kw, '%')
             LIMIT 1"
 
@@ -283,7 +289,7 @@ Public Class CashierPanel
         End If
     End Sub
 
-    Private Sub btnEdit_Click(sender As Object, e As EventArgs)
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         If dgvCart.SelectedRows.Count > 0 Then
             Dim row As DataGridViewRow = dgvCart.SelectedRows(0)
             Dim qtyInput As String = InputBox("Enter new quantity for " & row.Cells("colProdName").Value, "Edit Quantity")
@@ -300,7 +306,7 @@ Public Class CashierPanel
         End If
     End Sub
 
-    Private Sub btnRemove_Click(sender As Object, e As EventArgs)
+    Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
         If dgvCart.SelectedRows.Count = 0 Then
             MessageBox.Show("Please select an item to remove.", "No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
@@ -327,7 +333,7 @@ Public Class CashierPanel
         If e.KeyChar = "."c AndAlso txtPayment.Text.Contains(".") Then e.Handled = True
     End Sub
 
-    Private Sub txtPayment_TextChanged(sender As Object, e As EventArgs)
+    Private Sub txtPayment_TextChanged(sender As Object, e As EventArgs) Handles txtPayment.TextChanged
 
         Dim total As Decimal = originalTotal - discountAmount
         Dim payment As Decimal
@@ -348,7 +354,7 @@ Public Class CashierPanel
             btnCheckout.Enabled = False
         End If
     End Sub
-    Private Sub btnCheckout_Click(sender As Object, e As EventArgs)
+    Private Sub btnCheckout_Click(sender As Object, e As EventArgs) Handles btnCheckout.Click
 
         If dgvCart.Rows.Count = 0 Then
             MessageBox.Show("Cart is empty. Add items first.")
@@ -371,7 +377,7 @@ Public Class CashierPanel
             Exit Sub
         End If
 
-        Dim transactionID As String = "SB-" & DateTime.Now.ToString("yyyyMMddHHmmss")
+        Dim transactionID As String = "MC-" & DateTime.Now.ToString("yyyyMMddHHmmss")
 
         Try
             Using conn As New MySqlConnection(connStr)
@@ -413,11 +419,25 @@ Public Class CashierPanel
                         End Using
 
                         Dim deductQuery As String =
-                        "UPDATE products SET UnitInStock = UnitInStock - @qty WHERE ProductID = @pid"
+                        "UPDATE products 
+                        SET UnitInStock = UnitInStock - @qty 
+                        WHERE ProductID = @pid AND UnitInStock >= @qty"
 
                         Using cmd As New MySqlCommand(deductQuery, conn)
                             cmd.Parameters.AddWithValue("@qty", qtySold)
                             cmd.Parameters.AddWithValue("@pid", prodID)
+                            cmd.ExecuteNonQuery()
+                        End Using
+
+                        Dim insertSalesQuery As String =
+                        "INSERT INTO sales_records (`TransactionID`, `ItemName`, `Price`, `Quantity`, `Subtotal`, `DateTime`)
+                         VALUES (@tid, @iname, @price, @qty, @sub, NOW())"
+                        Using cmd As New MySqlCommand(insertSalesQuery, conn)
+                            cmd.Parameters.AddWithValue("@tid", transactionID)
+                            cmd.Parameters.AddWithValue("@iname", itemName)
+                            cmd.Parameters.AddWithValue("@price", price)
+                            cmd.Parameters.AddWithValue("@qty", qtySold)
+                            cmd.Parameters.AddWithValue("@sub", subtotal)
                             cmd.ExecuteNonQuery()
                         End Using
 
@@ -441,9 +461,9 @@ Public Class CashierPanel
         End Try
     End Sub
 
-    Private Sub btnReturn_Click(sender As Object, e As EventArgs)
+    Private Sub btnReturn_Click(sender As Object, e As EventArgs) Handles btnReturn.Click
         Dim returnForm As New ReturnPage()
-        returnForm.CurrentCashierName = $"{FirstName.Text.Trim()} {LastName.Text.Trim()}"
+        returnForm.CurrentCashierName = FirstNameValue & " " & LastNameValue
         returnForm.ShowDialog()
     End Sub
 
@@ -490,5 +510,29 @@ Public Class CashierPanel
         If finalTotal < 0 Then finalTotal = 0
         txtTotal.Text = finalTotal.ToString("F2")
         MessageBox.Show("Discount applied: -" & discountAmount.ToString("F2"))
+    End Sub
+
+    Private Sub btnReturn_Click_1(sender As Object, e As EventArgs) Handles btnReturn.Click
+
+    End Sub
+
+    Private Sub btnRemove_Click_1(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub btnEdit_Click_1(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub Panel3_Paint(sender As Object, e As PaintEventArgs) Handles Panel3.Paint
+
+    End Sub
+
+    Private Sub txtBarcode_TextChanged(sender As Object, e As EventArgs) Handles txtBarcode.TextChanged
+
+    End Sub
+
+    Private Sub txtChange_TextChanged(sender As Object, e As EventArgs) Handles txtChange.TextChanged
+
     End Sub
 End Class

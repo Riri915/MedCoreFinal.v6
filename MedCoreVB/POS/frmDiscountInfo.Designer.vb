@@ -42,6 +42,7 @@ Partial Class frmDiscountInfo
         '
         Me.cmbDiscountType.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbDiscountType.FormattingEnabled = True
+        Me.cmbDiscountType.Items.AddRange(New Object() {"PWD", "Senior Citizen"})
         Me.cmbDiscountType.Location = New System.Drawing.Point(32, 53)
         Me.cmbDiscountType.Name = "cmbDiscountType"
         Me.cmbDiscountType.Size = New System.Drawing.Size(163, 37)
@@ -195,7 +196,10 @@ Partial Class frmDiscountInfo
         Me.Controls.Add(Me.txtFirstName)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cmbDiscountType)
+        Me.MaximumSize = New System.Drawing.Size(617, 402)
+        Me.MinimumSize = New System.Drawing.Size(617, 402)
         Me.Name = "frmDiscountInfo"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmDiscountInfo"
         Me.ResumeLayout(False)
         Me.PerformLayout()
