@@ -122,5 +122,10 @@ namespace MedCoreC_
             ActivityLogGridStyler.Apply(dgvStockIn);
             ActivityLogGridStyler.ApplyRoundedEdges(pnlDgv);
         }
+
+        private void lblStockInReports_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

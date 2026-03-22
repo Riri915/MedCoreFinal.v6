@@ -212,6 +212,9 @@
     <EmbeddedResource Include="CMSpages\InventoryCon.resx">
       <DependentUpon>InventoryCon.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CMSpages\SalesReportCon.resx">
+      <DependentUpon>SalesReportCon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CMSpages\StockInReportsCon.resx">
       <DependentUpon>StockInReportsCon.cs</DependentUpon>
     </EmbeddedResource>
