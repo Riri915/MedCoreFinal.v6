@@ -98,7 +98,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthHelper.cs" />
     <Compile Include="CMSpages\ActivityLogger.cs" />
     <Compile Include="CMSpages\ActivityLogsCon.cs">
       <SubType>UserControl</SubType>
@@ -166,7 +165,6 @@
     <Compile Include="CMSpages\UserManagementCon.Designer.cs">
       <DependentUpon>UserManagementCon.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseInitializer.cs" />
     <Compile Include="styler\ActivityLogGridStyler.cs" />
     <Compile Include="styler\LabelPanelGradient.cs" />
     <Compile Include="styler\SidebarStyler.cs" />
@@ -263,6 +261,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoreLibrary\CoreLibrary.csproj">
+      <Project>{03b1583d-228f-4258-8c37-29f1741c85d2}</Project>
+      <Name>CoreLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

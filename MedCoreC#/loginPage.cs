@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CoreLibrary;
+using MySql.Data.MySqlClient;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -66,7 +68,13 @@ namespace MedCoreC_
             string username = usertxt.Text.Trim();
             string password = pwtxt.Text;
 
-            if (!DatabaseInitializer.DatabaseSuccess)
+            if (username == "" || password == "" || username == "Username" || password == "Password")
+            {
+                MessageBox.Show("Please enter username and password.");
+                return;
+            }
+
+            if (!CoreLibrary.DatabaseInitializer.DatabaseSuccess)
             {
                 MessageBox.Show("Database not initialized yet!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -74,7 +82,6 @@ namespace MedCoreC_
 
             if (AuthHelper.LoginUser(username, password, out string account_type))
             {
-
                 if (account_type.Equals("Admin", StringComparison.OrdinalIgnoreCase))
                 {
                     CMS cmsForm = new CMS();
@@ -84,12 +91,12 @@ namespace MedCoreC_
                 }
                 else
                 {
-                    MessageBox.Show("Only Admin can access CMS!", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Access role not supported.", "Access Denied");
                 }
             }
             else
             {
-                MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid username or password.", "Login Failed");
             }
         }
 
