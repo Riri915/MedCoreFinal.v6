@@ -112,8 +112,8 @@ namespace CoreLibrary
 
 
                     InsertDefaultUser(dbConn, "EMP001", "System", "Admin", "admin", "admin123", "Admin");
-                    InsertDefaultUser(dbConn, "EMP002", "Default", "Cashier", "cashier", "cashier123", "Cashier");
-                    InsertDefaultUser(dbConn, "EMP003", "Default", "Doctor", "doctor", "doctor123", "Doctor");
+                    InsertDefaultUser(dbConn, "EMP002", "Onic", "Austria", "cashier", "cashier123", "Cashier");
+                    InsertDefaultUser(dbConn, "EMP003", "Sherwin", "Naelgas", "doctor", "doctor123", "Doctor");
                     InsertDefaultUser(dbConn, "EMP004", "Self", "Service", "kiosk", "kiosk123", "Kiosk");
 
                     InsertDefaultProducts(dbConn);
@@ -157,8 +157,6 @@ namespace CoreLibrary
                 }
             }
 
-            Add("480015280058", "Paracetamol 500mg", new DateTime(2027, 12, 31), 5.00m, 100);
-            Add("480650830012", "Ibuprofen 200mg", new DateTime(2027, 10, 31), 8.50m, 80);
             Add("480901234567", "Amoxicillin 500mg", new DateTime(2026, 8, 31), 12.00m, 60);
             Add("480778899001", "Chlorhexidine Mouthwash", new DateTime(2026, 6, 30), 95.00m, 40);
             Add("480334455667", "Mefenamic Acid 500mg", new DateTime(2027, 3, 31), 10.00m, 70);
