@@ -69,7 +69,7 @@
             this.lblReportTitle.ForeColor = System.Drawing.Color.White;
             this.lblReportTitle.Location = new System.Drawing.Point(36, 20);
             this.lblReportTitle.Name = "lblReportTitle";
-            this.lblReportTitle.Size = new System.Drawing.Size(226, 41);
+            this.lblReportTitle.Size = new System.Drawing.Size(220, 40);
             this.lblReportTitle.TabIndex = 0;
             this.lblReportTitle.Text = "Today\'s Report";
             // 
@@ -135,11 +135,11 @@
             this.Label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Label6.AutoSize = true;
-            this.Label6.Font = new System.Drawing.Font("Calibri", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label6.Font = new System.Drawing.Font("Calibri", 21F, System.Drawing.FontStyle.Bold);
             this.Label6.ForeColor = System.Drawing.Color.White;
             this.Label6.Location = new System.Drawing.Point(35, 19);
             this.Label6.Name = "Label6";
-            this.Label6.Size = new System.Drawing.Size(194, 41);
+            this.Label6.Size = new System.Drawing.Size(200, 42);
             this.Label6.TabIndex = 1;
             this.Label6.Text = "Sales Report";
             // 

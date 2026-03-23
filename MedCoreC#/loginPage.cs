@@ -82,6 +82,18 @@ namespace MedCoreC_
 
             if (AuthHelper.LoginUser(username, password, out string account_type))
             {
+                UserSession.Username = username;
+                UserSession.EmployeeID = "EMP001"; 
+
+                using (var conn = new MySqlConnection("server=localhost;userid=root;password=;database=medcore"))
+                {
+                    conn.Open();
+                    ActivityLogger.Log(conn,
+                    UserSession.EmployeeID,
+                    UserSession.Username,
+                    "Logged in");
+                }
+
                 if (account_type.Equals("Admin", StringComparison.OrdinalIgnoreCase))
                 {
                     CMS cmsForm = new CMS();
@@ -98,6 +110,7 @@ namespace MedCoreC_
             {
                 MessageBox.Show("Invalid username or password.", "Login Failed");
             }
+
         }
 
         private void loginPage_Load(object sender, EventArgs e)
