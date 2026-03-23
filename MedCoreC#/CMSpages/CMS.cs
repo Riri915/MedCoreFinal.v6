@@ -1,4 +1,5 @@
-﻿using MedCoreC_.CMSpages;
+﻿using CoreLibrary;
+using MedCoreC_.CMSpages;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,6 +79,7 @@ namespace MedCoreC_
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             SidebarStyler.SetActive((Button)sender);
+
             DialogResult result = MessageBox.Show(
                 "Are you sure you want to log out?",
                 "Confirm Logout",
@@ -87,9 +89,18 @@ namespace MedCoreC_
 
             if (result == DialogResult.Yes)
             {
+                using (var conn = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;userid=root;password=;database=medcore"))
+                {
+                    conn.Open();
+
+                    CoreLibrary.ActivityLogger.Log(conn,
+                        UserSession.EmployeeID,
+                        UserSession.Username,
+                        "Logged out");
+                }
+
                 loginPage login = new loginPage();
                 login.Show();
-
                 this.Close();
             }
         }

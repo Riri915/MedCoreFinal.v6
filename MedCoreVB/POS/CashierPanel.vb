@@ -212,11 +212,34 @@ Public Class CashierPanel
             Using conn As New MySqlConnection(connStr)
 
                 Dim query As String = "
-            SELECT * FROM products 
-            WHERE Barcode = @kw 
-               OR ProductID = CAST(@kw AS UNSIGNED)
-               OR ProductName LIKE CONCAT('%', @kw, '%')
-            LIMIT 1"
+    SELECT 
+        ProductID AS ID,
+        Barcode,
+        ProductName AS Name,
+        ExpirationDate,
+        UnitPrice AS Price,
+        UnitInStock AS Stock,
+        'PRODUCT' AS Type
+    FROM products
+    WHERE Barcode = @kw
+       OR ProductID = @kw
+       OR ProductName LIKE CONCAT('%', @kw, '%')
+
+    UNION
+
+    SELECT 
+        ServiceCode AS ID,
+        '' AS Barcode,
+        ServiceName AS Name,
+        NULL AS ExpirationDate,
+        Price,
+        9999 AS Stock,
+        'SERVICE' AS Type
+    FROM services
+    WHERE ServiceCode = @kw
+       OR ServiceName LIKE CONCAT('%', @kw, '%')
+
+    LIMIT 1"
 
                 Using cmd As New MySqlCommand(query, conn)
 

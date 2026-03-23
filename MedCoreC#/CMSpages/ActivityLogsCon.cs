@@ -2,15 +2,14 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
+using CoreLibrary;
 
 namespace MedCoreC_.CMSpages
 {
     public partial class ActivityLogsCon : UserControl
     {
         private DataTable logsTable;
-
-        private readonly string connStr =
-            "server=localhost;user id=root;password=;database=medcore;";
+        private readonly string connStr = "server=localhost;user id=root;password=;database=medcore;";
 
         public ActivityLogsCon()
         {
@@ -24,6 +23,7 @@ namespace MedCoreC_.CMSpages
             ActivityLogGridStyler.ApplyRoundedEdges(dgvPanel);
 
             LoadActivityLogs();
+
             txtSearch.TextChanged += TxtSearch_TextChanged;
         }
 
@@ -36,14 +36,14 @@ namespace MedCoreC_.CMSpages
                     conn.Open();
 
                     string query = @"
-                        SELECT
-                            employee_id AS 'Employee ID',
-                            username AS 'Username',
-                            action AS 'Action',
-                            created_at AS 'Date & Time'
+                        SELECT 
+                            employee_id AS 'Employee ID', 
+                            username AS 'Username', 
+                            action AS 'Action', 
+                            DATE_FORMAT(created_at, '%Y-%m-%d %h:%i %p') AS 'Date & Time'
                         FROM activity_logs
-                        ORDER BY created_at DESC;
-                    ";
+                        ORDER BY created_at DESC
+                        LIMIT 50;";
 
                     using (var da = new MySqlDataAdapter(query, conn))
                     {
@@ -83,16 +83,14 @@ namespace MedCoreC_.CMSpages
             else
             {
                 logsTable.DefaultView.RowFilter = $@"
-                    [Employee ID] LIKE '%{keyword}%' OR
-                    [Username] LIKE '%{keyword}%' OR
-                    [Action] LIKE '%{keyword}%'
-                ";
+                    [Employee ID] LIKE '%{keyword}%' OR 
+                    [Username] LIKE '%{keyword}%' OR 
+                    [Action] LIKE '%{keyword}%'";
             }
         }
 
         private void txtSearch_TextChanged_1(object sender, EventArgs e)
         {
-            
         }
     }
 }
