@@ -92,6 +92,7 @@ namespace MedCoreC_.CMSpages
                     }
                 }
 
+
                 MessageBox.Show("Item added successfully!");
 
                 this.DialogResult = DialogResult.OK;
@@ -105,6 +106,7 @@ namespace MedCoreC_.CMSpages
             {
                 MessageBox.Show("Error:\n" + ex.Message);
             }
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

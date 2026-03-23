@@ -57,7 +57,6 @@ namespace CoreLibrary
                     ";
                     new MySqlCommand(createProductsTable, dbConn).ExecuteNonQuery();
 
-
                     string createTransactionsTable = @"
                         CREATE TABLE IF NOT EXISTS transactions (
                             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -71,7 +70,6 @@ namespace CoreLibrary
                     ";
                     new MySqlCommand(createTransactionsTable, dbConn).ExecuteNonQuery();
 
-
                     string createTransactionItemsTable = @"
                         CREATE TABLE IF NOT EXISTS transaction_items (
                             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -83,7 +81,6 @@ namespace CoreLibrary
                         );
                     ";
                     new MySqlCommand(createTransactionItemsTable, dbConn).ExecuteNonQuery();
-
 
                     string createSalesRecordsTable = @"
                         CREATE TABLE IF NOT EXISTS sales_records (
@@ -98,7 +95,6 @@ namespace CoreLibrary
                     ";
                     new MySqlCommand(createSalesRecordsTable, dbConn).ExecuteNonQuery();
 
-
                     string createActivityLogsTable = @"
                         CREATE TABLE IF NOT EXISTS activity_logs (
                             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -110,20 +106,19 @@ namespace CoreLibrary
                     ";
                     new MySqlCommand(createActivityLogsTable, dbConn).ExecuteNonQuery();
 
-
                     string createReturnTransactionsTable = @"
-                        create table if not exists return_transactions (
-                            returnid int auto_increment primary key,
-                            transactionid varchar(20) not null,
-                            productid varchar(50) not null,
-                            productname varchar(100) not null,
-                            quantityreturned int not null,
-                            conditionstatus varchar(50),
-                            refundamount decimal(10,2) not null,
-                            reasonforreturn varchar(255),
-                            cashier varchar(100),
-                            returndate datetime default current_timestamp,
-                            totalrefundamount decimal(10,2)
+                        CREATE TABLE IF NOT EXISTS return_transactions (
+                            returnid INT AUTO_INCREMENT PRIMARY KEY,
+                            transactionid VARCHAR(20) NOT NULL,
+                            productid VARCHAR(50) NOT NULL,
+                            productname VARCHAR(100) NOT NULL,
+                            quantityreturned INT NOT NULL,
+                            conditionstatus VARCHAR(50),
+                            refundamount DECIMAL(10,2) NOT NULL,
+                            reasonforreturn VARCHAR(255),
+                            cashier VARCHAR(100),
+                            returndate DATETIME DEFAULT CURRENT_TIMESTAMP,
+                            totalrefundamount DECIMAL(10,2)
                         );
                     ";
                     new MySqlCommand(createReturnTransactionsTable, dbConn).ExecuteNonQuery();
@@ -141,6 +136,14 @@ namespace CoreLibrary
                     ";
                     new MySqlCommand(createDiscountRecordsTable, dbConn).ExecuteNonQuery();
 
+                    string createServicesTable = @"
+                        CREATE TABLE IF NOT EXISTS services (
+                            ServiceCode VARCHAR(10) PRIMARY KEY,
+                            ServiceName VARCHAR(100) NOT NULL,
+                            Price DECIMAL(10,2) NOT NULL
+                        );
+                    ";
+                    new MySqlCommand(createServicesTable, dbConn).ExecuteNonQuery();
 
                     InsertDefaultUser(dbConn, "EMP001", "System", "Admin", "admin", "admin123", "Admin");
                     InsertDefaultUser(dbConn, "EMP002", "Onic", "Austria", "cashier", "cashier123", "Cashier");
@@ -148,6 +151,7 @@ namespace CoreLibrary
                     InsertDefaultUser(dbConn, "EMP004", "Self", "Service", "kiosk", "kiosk123", "Kiosk");
 
                     InsertDefaultProducts(dbConn);
+                    InsertDefaultServices(dbConn);
 
                     LogActivity(dbConn, "EMP001", "admin", "System initialized");
                 }
@@ -157,10 +161,37 @@ namespace CoreLibrary
             catch (Exception ex)
             {
                 DatabaseSuccess = false;
-
-                throw new Exception("Database initialization failed:\n" + ex.Message
-                );
+                throw new Exception("Database initialization failed:\n" + ex.Message);
             }
+        }
+
+        private static void InsertDefaultServices(MySqlConnection conn)
+        {
+            string query = @"
+                INSERT INTO services (ServiceCode, ServiceName, Price)
+                SELECT @code, @name, @price
+                WHERE NOT EXISTS (
+                    SELECT 1 FROM services WHERE ServiceCode = @code
+                );
+            ";
+
+            void Add(string code, string name, decimal price)
+            {
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@code", code);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@price", price);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            Add("CHK001", "Check-up", 500.00m);
+            Add("TFL001", "Tooth Filling / Pasta", 1200.00m);
+            Add("TCL001", "Teeth Cleaning", 800.00m);
+            Add("TEX001", "Tooth Extraction", 1500.00m);
+            Add("BRC001", "Braces", 25000.00m);
+            Add("DEN001", "Denture", 18000.00m);
         }
 
         private static void InsertDefaultProducts(MySqlConnection conn)
