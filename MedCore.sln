@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 18
-VisualStudioVersion = 18.2.11415.280
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MedCoreVB", "MedCoreVB\MedCoreVB.vbproj", "{EF89CDBB-5F24-4BDA-A8D7-FC5E2369324F}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -11,6 +11,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedCore", "MedCoreC#\MedCore.csproj", "{2ADF104D-25A1-4CF2-B80F-EF09EAAD4111}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLibrary", "CoreLibrary\CoreLibrary.csproj", "{03B1583D-228F-4258-8C37-29F1741C85D2}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DOCTORPAGE", "DOCTORPAGE\DOCTORPAGE.vbproj", "{3606E8CA-DB93-442A-BD40-3D47980A9A80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,10 @@ Global
 		{03B1583D-228F-4258-8C37-29F1741C85D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03B1583D-228F-4258-8C37-29F1741C85D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03B1583D-228F-4258-8C37-29F1741C85D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3606E8CA-DB93-442A-BD40-3D47980A9A80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3606E8CA-DB93-442A-BD40-3D47980A9A80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3606E8CA-DB93-442A-BD40-3D47980A9A80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3606E8CA-DB93-442A-BD40-3D47980A9A80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
