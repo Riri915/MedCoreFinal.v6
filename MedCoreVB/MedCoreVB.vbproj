@@ -125,18 +125,58 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DoctorPages\DoctorsWCPage.Designer.vb">
-      <DependentUpon>DoctorsWCPage.vb</DependentUpon>
+    <Compile Include="DoctorPages\AdminPanel\Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
     </Compile>
-    <Compile Include="DoctorPages\DoctorsWCPage.vb">
+    <Compile Include="DoctorPages\AdminPanel\Form1.vb" />
+    <Compile Include="DoctorPages\AdminPanel\obj\Debug\net10.0-windows\.NETCoreApp,Version=v10.0.AssemblyAttributes.vb" />
+    <Compile Include="DoctorPages\AdminPanel\obj\Debug\net10.0-windows\AdminPanel.AssemblyInfo.vb" />
+    <Compile Include="DoctorPages\AdminPanel\obj\Release\net10.0-windows\.NETCoreApp,Version=v10.0.AssemblyAttributes.vb" />
+    <Compile Include="DoctorPages\AdminPanel\obj\Release\net10.0-windows\AdminPanel.AssemblyInfo.vb" />
+    <Compile Include="DoctorPages\AdminPanel\Program.vb" />
+    <Compile Include="DoctorPages\BaseUserControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DoctorPages\Database.Helper.vb" />
+    <Compile Include="DoctorPages\DOCTORPAGES.Designer.vb">
+      <DependentUpon>DOCTORPAGES.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorPages\DOCTORPAGES.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DoctorPages\PatientConsultvb.Designer.vb">
-      <DependentUpon>PatientConsultvb.vb</DependentUpon>
+    <Compile Include="DoctorPages\SharedData.vb" />
+    <Compile Include="DoctorPages\UC_CONSULTATION.Designer.vb">
+      <DependentUpon>UC_CONSULTATION.vb</DependentUpon>
     </Compile>
-    <Compile Include="DoctorPages\PatientConsultvb.vb">
-      <SubType>Form</SubType>
+    <Compile Include="DoctorPages\UC_CONSULTATION.vb">
+      <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="DoctorPages\UC_NEWDASHBOARD.Designer.vb">
+      <DependentUpon>UC_NEWDASHBOARD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorPages\UC_NEWDASHBOARD.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DoctorPages\UC_PANEL STATS.Designer.vb">
+      <DependentUpon>UC_PANEL STATS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorPages\UC_PANEL STATS.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DoctorPages\UC_PANELCHARTS.Designer.vb">
+      <DependentUpon>UC_PANELCHARTS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorPages\UC_PANELCHARTS.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DoctorPages\UC_PATIENTQUEUE.Designer.vb">
+      <DependentUpon>UC_PATIENTQUEUE.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorPages\UC_PATIENTQUEUE.vb" />
+    <Compile Include="DoctorPages\UC_RECORDS.Designer.vb">
+      <DependentUpon>UC_RECORDS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorPages\UC_RECORDS.vb" />
     <Compile Include="LoginForm.Designer.vb">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </Compile>
@@ -201,11 +241,26 @@
     <Compile Include="POS\SidebarStyler.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DoctorPages\DoctorsWCPage.resx">
-      <DependentUpon>DoctorsWCPage.vb</DependentUpon>
+    <EmbeddedResource Include="DoctorPages\DOCTORPAGES.resx">
+      <DependentUpon>DOCTORPAGES.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DoctorPages\PatientConsultvb.resx">
-      <DependentUpon>PatientConsultvb.vb</DependentUpon>
+    <EmbeddedResource Include="DoctorPages\UC_CONSULTATION.resx">
+      <DependentUpon>UC_CONSULTATION.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoctorPages\UC_NEWDASHBOARD.resx">
+      <DependentUpon>UC_NEWDASHBOARD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoctorPages\UC_PANEL STATS.resx">
+      <DependentUpon>UC_PANEL STATS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoctorPages\UC_PANELCHARTS.resx">
+      <DependentUpon>UC_PANELCHARTS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoctorPages\UC_PATIENTQUEUE.resx">
+      <DependentUpon>UC_PATIENTQUEUE.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoctorPages\UC_RECORDS.resx">
+      <DependentUpon>UC_RECORDS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
@@ -236,6 +291,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DoctorPages\AdminPanel\AdminPanel.vbproj" />
+    <None Include="DoctorPages\AdminPanel\obj\AdminPanel.vbproj.nuget.dgspec.json" />
+    <None Include="DoctorPages\AdminPanel\obj\AdminPanel.vbproj.nuget.g.props" />
+    <None Include="DoctorPages\AdminPanel\obj\AdminPanel.vbproj.nuget.g.targets" />
+    <None Include="DoctorPages\AdminPanel\obj\Debug\net10.0-windows\AdminPanel.AssemblyInfoInputs.cache" />
+    <None Include="DoctorPages\AdminPanel\obj\Debug\net10.0-windows\AdminPanel.assets.cache" />
+    <None Include="DoctorPages\AdminPanel\obj\Debug\net10.0-windows\AdminPanel.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="DoctorPages\AdminPanel\obj\project.assets.json" />
+    <None Include="DoctorPages\AdminPanel\obj\project.nuget.cache" />
+    <None Include="DoctorPages\AdminPanel\obj\Release\net10.0-windows\AdminPanel.AssemblyInfoInputs.cache" />
+    <None Include="DoctorPages\AdminPanel\obj\Release\net10.0-windows\AdminPanel.assets.cache" />
+    <None Include="DoctorPages\AdminPanel\obj\Release\net10.0-windows\AdminPanel.GeneratedMSBuildEditorConfig.editorconfig" />
     <None Include="DoctorPages\App.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -258,6 +325,17 @@
       <Project>{2adf104d-25a1-4cf2-b80f-ef09eaad4111}</Project>
       <Name>MedCore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DoctorPages\AdminPanel\AdminPanel.vbproj.user" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DoctorPages\AdminPanel\bin\Debug\net10.0-windows\" />
+    <Folder Include="DoctorPages\AdminPanel\bin\Release\net10.0-windows\" />
+    <Folder Include="DoctorPages\AdminPanel\obj\Debug\net10.0-windows\refint\" />
+    <Folder Include="DoctorPages\AdminPanel\obj\Debug\net10.0-windows\ref\" />
+    <Folder Include="DoctorPages\AdminPanel\obj\Release\net10.0-windows\refint\" />
+    <Folder Include="DoctorPages\AdminPanel\obj\Release\net10.0-windows\ref\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
