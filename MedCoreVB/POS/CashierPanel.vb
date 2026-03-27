@@ -12,6 +12,7 @@ Public Class CashierPanel
     Public Property LastNameValue As String
     Public Property Position As String
 
+
     Private connStr As String = "server=localhost;userid=root;password=;database=medcore"
     Private isLoggingOut As Boolean = False
 
@@ -42,6 +43,10 @@ Public Class CashierPanel
         ResetIdle()
     End Sub
     Private Sub CashierPanel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        DataGridViewStyler.ApplyStyle(dgvCart)
+        DataGridViewStyler.ApplyRoundedCorners(dgvCart)
+
         Me.FormBorderStyle = FormBorderStyle.None
         Me.WindowState = FormWindowState.Maximized
         Me.Bounds = Screen.PrimaryScreen.Bounds
@@ -416,9 +421,10 @@ Public Class CashierPanel
             Using conn As New MySqlConnection(connStr)
                 conn.Open()
 
+                ' 🔹 Save transaction
                 Dim queryTrans As String =
-                "INSERT INTO transactions (TransactionID, CashierName, Total, Payment, ChangeAmt)
-                 VALUES (@tid, @cashier, @total, @pay, @chg)"
+            "INSERT INTO transactions (TransactionID, CashierName, Total, Payment, ChangeAmt)
+             VALUES (@tid, @cashier, @total, @pay, @chg)"
 
                 Using cmd As New MySqlCommand(queryTrans, conn)
                     cmd.Parameters.AddWithValue("@tid", transactionID)
@@ -429,6 +435,7 @@ Public Class CashierPanel
                     cmd.ExecuteNonQuery()
                 End Using
 
+                ' 🔹 Save items
                 For Each row As DataGridViewRow In dgvCart.Rows
                     If Not row.IsNewRow Then
 
@@ -439,8 +446,8 @@ Public Class CashierPanel
                         Dim subtotal = Convert.ToDecimal(row.Cells("colSubtotal").Value)
 
                         Dim queryItem As String =
-                        "INSERT INTO transaction_items (TransactionID, ItemName, Quantity, Price, Subtotal)
-                         VALUES (@tid, @iname, @qty, @price, @sub)"
+                    "INSERT INTO transaction_items (TransactionID, ItemName, Quantity, Price, Subtotal)
+                     VALUES (@tid, @iname, @qty, @price, @sub)"
 
                         Using cmd As New MySqlCommand(queryItem, conn)
                             cmd.Parameters.AddWithValue("@tid", transactionID)
@@ -451,10 +458,11 @@ Public Class CashierPanel
                             cmd.ExecuteNonQuery()
                         End Using
 
+                        ' 🔹 Deduct stock
                         Dim deductQuery As String =
-                        "UPDATE products 
-                        SET UnitInStock = UnitInStock - @qty 
-                        WHERE ProductID = @pid AND UnitInStock >= @qty"
+                    "UPDATE products 
+                     SET UnitInStock = UnitInStock - @qty 
+                     WHERE ProductID = @pid AND UnitInStock >= @qty"
 
                         Using cmd As New MySqlCommand(deductQuery, conn)
                             cmd.Parameters.AddWithValue("@qty", qtySold)
@@ -462,9 +470,11 @@ Public Class CashierPanel
                             cmd.ExecuteNonQuery()
                         End Using
 
+                        ' 🔹 Sales record
                         Dim insertSalesQuery As String =
-                        "INSERT INTO sales_records (`TransactionID`, `ItemName`, `Price`, `Quantity`, `Subtotal`, `DateTime`)
-                         VALUES (@tid, @iname, @price, @qty, @sub, NOW())"
+                    "INSERT INTO sales_records (`TransactionID`, `ItemName`, `Price`, `Quantity`, `Subtotal`, `DateTime`)
+                     VALUES (@tid, @iname, @price, @qty, @sub, NOW())"
+
                         Using cmd As New MySqlCommand(insertSalesQuery, conn)
                             cmd.Parameters.AddWithValue("@tid", transactionID)
                             cmd.Parameters.AddWithValue("@iname", itemName)
@@ -477,6 +487,8 @@ Public Class CashierPanel
                     End If
                 Next
             End Using
+
+            ' 🔹 Prepare receipt data
             Dim itemsTable As New DataTable()
             itemsTable.Columns.Add("ProductName")
             itemsTable.Columns.Add("Subtotal")
@@ -484,11 +496,13 @@ Public Class CashierPanel
             For Each row As DataGridViewRow In dgvCart.Rows
                 If Not row.IsNewRow Then
                     itemsTable.Rows.Add(
-            row.Cells("colProdName").Value.ToString(),
-            Convert.ToDecimal(row.Cells("colSubtotal").Value)
-        )
+                    row.Cells("colProdName").Value.ToString(),
+                    Convert.ToDecimal(row.Cells("colSubtotal").Value)
+                )
                 End If
             Next
+
+            ' 🔥 SHOW RECEIPT (FIX APPLIED HERE)
             Dim receipt As New ReceiptForm()
             receipt.TransactionID = transactionID
             receipt.CashierFirstName = FirstName.Text.Trim()
@@ -496,18 +510,14 @@ Public Class CashierPanel
             receipt.Payment = payment
             receipt.Change = change
             receipt.Total = total
+
+            ' ✅ IMPORTANT FIX
+            receipt.Discount = discountAmount
+
             receipt.ItemsTable = itemsTable
             receipt.ShowDialog()
-            dgvCart.Rows.Clear()
 
-            txtTotal.Clear()
-            txtPayment.Clear()
-            txtChange.Clear()
-            originalTotal = 0
-            discountAmount = 0
-            btnCheckout.Enabled = False
-            MessageBox.Show("Transaction completed successfully!")
-
+            ' 🔹 Reset UI
             dgvCart.Rows.Clear()
             txtTotal.Clear()
             txtPayment.Clear()
@@ -515,10 +525,11 @@ Public Class CashierPanel
 
             originalTotal = 0
             discountAmount = 0
-
             btnCheckout.Enabled = False
 
             MessageBox.Show("Transaction completed successfully!")
+
+            ' 🔹 Log activity
             Using conn As New MySqlConnection(connStr)
                 conn.Open()
                 Dim fullName As String = Session.FirstName & " " & Session.LastName
@@ -528,6 +539,7 @@ Public Class CashierPanel
         Catch ex As Exception
             MessageBox.Show("Checkout failed: " & ex.Message)
         End Try
+
     End Sub
 
     Private Sub btnReturn_Click(sender As Object, e As EventArgs) Handles btnReturn.Click
@@ -561,7 +573,6 @@ Public Class CashierPanel
 
     End Sub
     Public Sub ApplyDiscount(discountType As String)
-
         If originalTotal <= 0 Then
             MessageBox.Show("Cart is empty.")
             Exit Sub
@@ -577,31 +588,10 @@ Public Class CashierPanel
 
         Dim finalTotal As Decimal = originalTotal - discountAmount
         If finalTotal < 0 Then finalTotal = 0
+
         txtTotal.Text = finalTotal.ToString("F2")
-        MessageBox.Show("Discount applied: -" & discountAmount.ToString("F2"))
+
+        MessageBox.Show("Discount applied: -₱" & discountAmount.ToString("F2"))
     End Sub
 
-    Private Sub btnReturn_Click_1(sender As Object, e As EventArgs) Handles btnReturn.Click
-
-    End Sub
-
-    Private Sub btnRemove_Click_1(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub btnEdit_Click_1(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Panel3_Paint(sender As Object, e As PaintEventArgs) Handles Panel3.Paint
-
-    End Sub
-
-    Private Sub txtBarcode_TextChanged(sender As Object, e As EventArgs) Handles txtBarcode.TextChanged
-
-    End Sub
-
-    Private Sub txtChange_TextChanged(sender As Object, e As EventArgs) Handles txtChange.TextChanged
-
-    End Sub
 End Class

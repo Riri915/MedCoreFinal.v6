@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CMS));
             this.sidebarPanel = new System.Windows.Forms.Panel();
             this.btnReturnedItemsReport = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
@@ -39,13 +40,16 @@
             this.btnDashboard = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.sidebarPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // sidebarPanel
             // 
             this.sidebarPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.sidebarPanel.Controls.Add(this.pictureBox1);
             this.sidebarPanel.Controls.Add(this.btnReturnedItemsReport);
             this.sidebarPanel.Controls.Add(this.btnLogOut);
             this.sidebarPanel.Controls.Add(this.btnStockInReports);
@@ -176,11 +180,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Magneto", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Magneto", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(26, 35);
+            this.label1.Location = new System.Drawing.Point(110, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(327, 73);
+            this.label1.Size = new System.Drawing.Size(255, 56);
             this.label1.TabIndex = 2;
             this.label1.Text = "MedCore";
             // 
@@ -194,6 +198,17 @@
             this.contentPanel.Size = new System.Drawing.Size(863, 683);
             this.contentPanel.TabIndex = 1;
             this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 16);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(111, 99);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
             // 
             // CMS
             // 
@@ -211,6 +226,7 @@
             this.Load += new System.EventHandler(this.CMS_Load);
             this.sidebarPanel.ResumeLayout(false);
             this.sidebarPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -228,5 +244,6 @@
         private System.Windows.Forms.Button btnInventory;
         private System.Windows.Forms.Button btnReturnedItemsReport;
         private System.Windows.Forms.Button btnUserManagement;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

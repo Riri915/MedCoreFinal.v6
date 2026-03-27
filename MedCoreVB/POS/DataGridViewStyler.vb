@@ -33,7 +33,6 @@ Public Class DataGridViewStyler
         End With
     End Sub
 
-    ' curve corners
     Public Shared Sub ApplyRoundedCorners(dgv As DataGridView, Optional radius As Integer = 12)
         AddHandler dgv.Resize, Sub(sender As Object, e As EventArgs)
                                    Dim ctrl = DirectCast(sender, DataGridView)

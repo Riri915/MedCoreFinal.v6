@@ -140,7 +140,8 @@ Partial Class CashierPanel
         Me.LastName.BackColor = System.Drawing.SystemColors.ControlLight
         Me.LastName.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.LastName.Enabled = False
-        Me.LastName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LastName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LastName.ForeColor = System.Drawing.Color.Black
         Me.LastName.Location = New System.Drawing.Point(157, 154)
         Me.LastName.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.LastName.Name = "LastName"
@@ -177,7 +178,8 @@ Partial Class CashierPanel
         Me.txtEmployeeID.BackColor = System.Drawing.SystemColors.ControlLight
         Me.txtEmployeeID.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtEmployeeID.Enabled = False
-        Me.txtEmployeeID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtEmployeeID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtEmployeeID.ForeColor = System.Drawing.Color.Black
         Me.txtEmployeeID.Location = New System.Drawing.Point(157, 87)
         Me.txtEmployeeID.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtEmployeeID.Name = "txtEmployeeID"
@@ -191,7 +193,8 @@ Partial Class CashierPanel
         Me.FirstName.BackColor = System.Drawing.SystemColors.ControlLight
         Me.FirstName.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.FirstName.Enabled = False
-        Me.FirstName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FirstName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FirstName.ForeColor = System.Drawing.Color.Black
         Me.FirstName.Location = New System.Drawing.Point(157, 121)
         Me.FirstName.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.FirstName.Name = "FirstName"
@@ -203,7 +206,8 @@ Partial Class CashierPanel
         Me.txtPosition.BackColor = System.Drawing.SystemColors.ControlLight
         Me.txtPosition.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtPosition.Enabled = False
-        Me.txtPosition.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPosition.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPosition.ForeColor = System.Drawing.Color.Black
         Me.txtPosition.Location = New System.Drawing.Point(157, 187)
         Me.txtPosition.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtPosition.Name = "txtPosition"
@@ -477,7 +481,7 @@ Partial Class CashierPanel
         'addtocart
         '
         Me.addtocart.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.addtocart.BackColor = System.Drawing.Color.Lime
+        Me.addtocart.BackColor = System.Drawing.Color.LimeGreen
         Me.addtocart.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.addtocart.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.addtocart.ForeColor = System.Drawing.SystemColors.InfoText
@@ -549,7 +553,7 @@ Partial Class CashierPanel
         'btnCheckout
         '
         Me.btnCheckout.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCheckout.BackColor = System.Drawing.Color.Lime
+        Me.btnCheckout.BackColor = System.Drawing.Color.LimeGreen
         Me.btnCheckout.Font = New System.Drawing.Font("Calibri", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCheckout.ForeColor = System.Drawing.SystemColors.InfoText
         Me.btnCheckout.Location = New System.Drawing.Point(-2, 408)
@@ -563,10 +567,10 @@ Partial Class CashierPanel
         'btnDiscount
         '
         Me.btnDiscount.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnDiscount.BackColor = System.Drawing.Color.Firebrick
+        Me.btnDiscount.BackColor = System.Drawing.Color.Red
         Me.btnDiscount.Font = New System.Drawing.Font("Calibri", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDiscount.ForeColor = System.Drawing.SystemColors.InfoText
-        Me.btnDiscount.Location = New System.Drawing.Point(15, 200)
+        Me.btnDiscount.Location = New System.Drawing.Point(15, 197)
         Me.btnDiscount.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnDiscount.Name = "btnDiscount"
         Me.btnDiscount.Size = New System.Drawing.Size(308, 48)
@@ -580,7 +584,7 @@ Partial Class CashierPanel
         Me.btnReturn.BackColor = System.Drawing.Color.DarkGray
         Me.btnReturn.Font = New System.Drawing.Font("Calibri", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnReturn.ForeColor = System.Drawing.SystemColors.InfoText
-        Me.btnReturn.Location = New System.Drawing.Point(15, 139)
+        Me.btnReturn.Location = New System.Drawing.Point(15, 76)
         Me.btnReturn.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnReturn.Name = "btnReturn"
         Me.btnReturn.Size = New System.Drawing.Size(308, 48)
@@ -608,7 +612,7 @@ Partial Class CashierPanel
         Me.btnRemove.BackColor = System.Drawing.Color.LightCoral
         Me.btnRemove.Font = New System.Drawing.Font("Calibri", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnRemove.ForeColor = System.Drawing.SystemColors.InfoText
-        Me.btnRemove.Location = New System.Drawing.Point(16, 78)
+        Me.btnRemove.Location = New System.Drawing.Point(15, 135)
         Me.btnRemove.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnRemove.Name = "btnRemove"
         Me.btnRemove.Size = New System.Drawing.Size(308, 48)
