@@ -21,6 +21,13 @@ Public Class CashierPanel
         isLoggingOut = True
         IdleTimer.Stop()
         Timer1.Stop()
+
+        Using conn As New MySqlConnection(connStr)
+            conn.Open()
+            Dim fullName As String = Session.FirstName & " " & Session.LastName
+            ActivityLogger.Log(conn, Session.EmployeeID, fullName, "Logged out")
+        End Using
+
         Me.Close()
         LoginForm.Show()
     End Sub
@@ -212,34 +219,34 @@ Public Class CashierPanel
             Using conn As New MySqlConnection(connStr)
 
                 Dim query As String = "
-    SELECT 
-        ProductID AS ID,
-        Barcode,
-        ProductName AS Name,
-        ExpirationDate,
-        UnitPrice AS Price,
-        UnitInStock AS Stock,
-        'PRODUCT' AS Type
-    FROM products
-    WHERE Barcode = @kw
-       OR ProductID = @kw
-       OR ProductName LIKE CONCAT('%', @kw, '%')
+                SELECT 
+                    ProductID AS ID,
+                    Barcode,
+                    ProductName AS Name,
+                    ExpirationDate,
+                    UnitPrice AS Price,
+                    UnitInStock AS Stock,
+                    'PRODUCT' AS Type
+                FROM products
+                WHERE Barcode = @kw
+                   OR ProductID = @kw
+                   OR ProductName LIKE CONCAT('%', @kw, '%')
 
-    UNION
+                UNION
 
-    SELECT 
-        ServiceCode AS ID,
-        '' AS Barcode,
-        ServiceName AS Name,
-        NULL AS ExpirationDate,
-        Price,
-        9999 AS Stock,
-        'SERVICE' AS Type
-    FROM services
-    WHERE ServiceCode = @kw
-       OR ServiceName LIKE CONCAT('%', @kw, '%')
+                SELECT 
+                    ServiceCode AS ID,
+                    '' AS Barcode,
+                    ServiceName AS Name,
+                    NULL AS ExpirationDate,
+                    Price,
+                    9999 AS Stock,
+                    'SERVICE' AS Type
+                FROM services
+                WHERE ServiceCode = @kw
+                   OR ServiceName LIKE CONCAT('%', @kw, '%')
 
-    LIMIT 1"
+                LIMIT 1"
 
                 Using cmd As New MySqlCommand(query, conn)
 
@@ -250,10 +257,9 @@ Public Class CashierPanel
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
 
                         If reader.Read() Then
-
                             txtBarcode.Text = reader("Barcode").ToString()
-                            textProductID.Text = reader("ProductID").ToString()
-                            txtProductName.Text = reader("ProductName").ToString()
+                            textProductID.Text = reader("ID").ToString()
+                            txtProductName.Text = reader("Name").ToString()
 
                             If IsDBNull(reader("ExpirationDate")) Then
                                 txtExpiration.Text = ""
@@ -261,17 +267,21 @@ Public Class CashierPanel
                                 txtExpiration.Text = Convert.ToDateTime(reader("ExpirationDate")).ToString("yyyy-MM-dd")
                             End If
 
-                            txtPrice.Text = Convert.ToDecimal(reader("UnitPrice")).ToString("F2")
+                            txtPrice.Text = Convert.ToDecimal(reader("Price")).ToString("F2")
 
-                            Dim stockCount As Integer = Convert.ToInt32(reader("UnitInStock"))
+                            Dim stockCount As Integer = Convert.ToInt32(reader("Stock"))
                             txtStock.Text = stockCount.ToString()
 
-                            If stockCount > 0 Then
-                                txtStatus.Text = "In-stock"
+                            If reader("Type").ToString() = "SERVICE" Then
+                                txtStatus.Text = "Service"
+                                txtExpiration.Text = ""
                             Else
-                                txtStatus.Text = "Out of stock"
+                                If stockCount > 0 Then
+                                    txtStatus.Text = "In-stock"
+                                Else
+                                    txtStatus.Text = "Out of stock"
+                                End If
                             End If
-
                         Else
                             ClearProductFields()
                         End If
@@ -509,6 +519,11 @@ Public Class CashierPanel
             btnCheckout.Enabled = False
 
             MessageBox.Show("Transaction completed successfully!")
+            Using conn As New MySqlConnection(connStr)
+                conn.Open()
+                Dim fullName As String = Session.FirstName & " " & Session.LastName
+                ActivityLogger.Log(conn, Session.EmployeeID, fullName, "Completed transaction " & transactionID)
+            End Using
 
         Catch ex As Exception
             MessageBox.Show("Checkout failed: " & ex.Message)

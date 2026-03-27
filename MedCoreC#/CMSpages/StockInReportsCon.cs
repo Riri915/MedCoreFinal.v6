@@ -10,82 +10,80 @@ namespace MedCoreC_
         private readonly string connString =
             "server=localhost;user id=root;password=;database=medcore;";
 
+        private string currentFilter = "today";
+
         public StockInReports()
         {
             InitializeComponent();
 
-            LoadTodayReport();
+            currentFilter = "today";
+            lblReportType.Text = "Today's Report";
+
+            LoadData();
 
             txtSearch.TextChanged += TxtSearch_TextChanged;
         }
-
         private void btnDailyReports_Click(object sender, EventArgs e)
         {
+            currentFilter = "today";
             lblReportType.Text = "Today's Report";
-            LoadTodayReport();
+            LoadData();
         }
 
         private void btnWeeklyReports_Click(object sender, EventArgs e)
         {
+            currentFilter = "week";
             lblReportType.Text = "This Week Report";
-            LoadWeeklyReport();
+            LoadData();
         }
 
         private void btnMonthlyReports_Click(object sender, EventArgs e)
         {
+            currentFilter = "month";
             lblReportType.Text = "This Month's Report";
-            LoadMonthlyReport();
+            LoadData();
         }
 
-        private void LoadTodayReport(string keyword = "")
+        private void LoadData(string keyword = "")
         {
             string query = @"
                 SELECT TransactionID, ProductID, ProductName, Quantity, DateTime
                 FROM stock_in
-                WHERE DATE(DateTime) = CURDATE()
-                  AND (ProductName LIKE @search OR ProductID LIKE @search)
-                ORDER BY DateTime DESC;
-            ";
+                WHERE 1=1 ";
 
-            LoadToGrid(query, keyword);
-        }
+            switch (currentFilter)
+            {
+                case "today":
+                    query += "AND DATE(`DateTime`) = CURDATE() ";
+                    break;
 
-        private void LoadWeeklyReport(string keyword = "")
-        {
-            string query = @"
-                SELECT TransactionID, ProductID, ProductName, Quantity, DateTime
-                FROM stock_in
-                WHERE YEARWEEK(DateTime, 1) = YEARWEEK(CURDATE(), 1)
-                  AND (ProductName LIKE @search OR ProductID LIKE @search)
-                ORDER BY DateTime DESC;
-            ";
+                case "week":
+                    query += "AND YEARWEEK(`DateTime`, 1) = YEARWEEK(CURDATE(), 1) ";
+                    break;
 
-            LoadToGrid(query, keyword);
-        }
+                case "month":
+                    query += @"AND MONTH(`DateTime`) = MONTH(CURDATE()) 
+                               AND YEAR(`DateTime`) = YEAR(CURDATE()) ";
+                    break;
+            }
 
-        private void LoadMonthlyReport(string keyword = "")
-        {
-            string query = @"
-                SELECT TransactionID, ProductID, ProductName, Quantity, DateTime
-                FROM stock_in
-                WHERE MONTH(DateTime) = MONTH(CURDATE())
-                  AND YEAR(DateTime) = YEAR(CURDATE())
-                  AND (ProductName LIKE @search OR ProductID LIKE @search)
-                ORDER BY DateTime DESC;
-            ";
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                query += "AND (ProductName LIKE @search OR CAST(ProductID AS CHAR) LIKE @search) ";
+            }
 
-            LoadToGrid(query, keyword);
-        }
+            query += "ORDER BY `DateTime` DESC";
 
-        private void LoadToGrid(string query, string keyword)
-        {
             using (var conn = new MySqlConnection(connString))
             {
                 conn.Open();
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@search", "%" + keyword + "%");
+                    if (!string.IsNullOrWhiteSpace(keyword))
+                    {
+                        cmd.Parameters.AddWithValue("@search", "%" + keyword.Trim() + "%");
+                    }
 
                     DataTable dt = new DataTable();
                     new MySqlDataAdapter(cmd).Fill(dt);
@@ -99,12 +97,7 @@ namespace MedCoreC_
 
         private void TxtSearch_TextChanged(object sender, EventArgs e)
         {
-            if (lblReportType.Text.Contains("Today"))
-                LoadTodayReport(txtSearch.Text.Trim());
-            else if (lblReportType.Text.Contains("Week"))
-                LoadWeeklyReport(txtSearch.Text.Trim());
-            else
-                LoadMonthlyReport(txtSearch.Text.Trim());
+            LoadData(txtSearch.Text.Trim());
         }
 
         private void FormatGrid()
@@ -122,8 +115,7 @@ namespace MedCoreC_
             ActivityLogGridStyler.Apply(dgvStockIn);
             ActivityLogGridStyler.ApplyRoundedEdges(pnlDgv);
         }
-
-        private void lblStockInReports_Click(object sender, EventArgs e)
+    private void lblStockInReports_Click(object sender, EventArgs e)
         {
 
         }
