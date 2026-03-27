@@ -208,9 +208,9 @@ Partial Class ReturnPage
         Me.cmbCondition.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbCondition.ForeColor = System.Drawing.Color.LightGray
         Me.cmbCondition.FormattingEnabled = True
-        Me.cmbCondition.Items.AddRange(New Object() {"Good Condition", "Damaged", "Expired", "Wrong Item Delivered"})
+        Me.cmbCondition.Items.AddRange(New Object() {"Damaged", "Expired", "Wrong Item Delivered"})
         Me.cmbCondition.Location = New System.Drawing.Point(28, 390)
-        Me.cmbCondition.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbCondition.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbCondition.Name = "cmbCondition"
         Me.cmbCondition.Size = New System.Drawing.Size(279, 33)
         Me.cmbCondition.TabIndex = 91
@@ -275,7 +275,7 @@ Partial Class ReturnPage
         Me.txtReason.BackColor = System.Drawing.Color.White
         Me.txtReason.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtReason.Location = New System.Drawing.Point(345, 249)
-        Me.txtReason.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtReason.Margin = New System.Windows.Forms.Padding(4)
         Me.txtReason.Name = "txtReason"
         Me.txtReason.Size = New System.Drawing.Size(279, 175)
         Me.txtReason.TabIndex = 93

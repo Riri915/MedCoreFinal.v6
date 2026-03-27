@@ -239,6 +239,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="POS\SidebarStyler.vb" />
+    <Compile Include="Session.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DoctorPages\DOCTORPAGES.resx">

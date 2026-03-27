@@ -140,55 +140,42 @@ namespace MedCoreC_
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            dgvInventory.EndEdit();
-
             if (dgvInventory.CurrentRow == null)
             {
                 MessageBox.Show("Please select a product to update.");
                 return;
             }
-
+            var idValue = dgvInventory.CurrentRow.Cells["ProductID"].Value;
+            var nameValue = dgvInventory.CurrentRow.Cells["ProductName"].Value;
+            if (idValue == null || nameValue == null)
+            {
+                MessageBox.Show("Invalid product data.");
+                return;
+            }
+            string productId = Convert.ToString(idValue);
+            string productName = Convert.ToString(nameValue);
+            string input = ShowInputDialog("Update Price", $"Enter new price for:\n{productName}");
+            if (string.IsNullOrWhiteSpace(input))
+                return;
+            if (!decimal.TryParse(input, out decimal newPrice) || newPrice <= 0)
+            {
+                MessageBox.Show("Invalid price.");
+                return;
+            }
             try
             {
-                string productId =
-                    dgvInventory.CurrentRow.Cells["ProductID"].Value.ToString();
-
-                string name =
-                    dgvInventory.CurrentRow.Cells["ProductName"].Value.ToString();
-
-                decimal price =
-                    Convert.ToDecimal(dgvInventory.CurrentRow.Cells["UnitPrice"].Value);
-
-                DateTime? exp =
-                    dgvInventory.CurrentRow.Cells["ExpirationDate"].Value == DBNull.Value
-                    ? (DateTime?)null
-                    : Convert.ToDateTime(dgvInventory.CurrentRow.Cells["ExpirationDate"].Value);
-
                 using (var conn = new MySqlConnection(connString))
                 {
                     conn.Open();
-                    string query = @"
-                UPDATE products
-                SET 
-                    ProductName = @name,
-                    UnitPrice = @price,
-                    ExpirationDate = @exp
-                WHERE ProductID = @id;
-            ";
-
+                    string query = @"UPDATE products SET UnitPrice = @price WHERE ProductID = @id;";
                     using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@name", name);
-                        cmd.Parameters.AddWithValue("@price", price);
-                        cmd.Parameters.AddWithValue("@exp",
-                            exp.HasValue ? (object)exp.Value : DBNull.Value);
+                        cmd.Parameters.AddWithValue("@price", newPrice);
                         cmd.Parameters.AddWithValue("@id", productId);
-
                         cmd.ExecuteNonQuery();
                     }
                 }
-
-                MessageBox.Show("Product updated successfully.");
+                MessageBox.Show("Price updated successfully.");
                 LoadInventory();
             }
             catch (Exception ex)
@@ -271,7 +258,7 @@ namespace MedCoreC_
         }
         private void ConfigureGridEditability()
         {
-            dgvInventory.ReadOnly = false;
+            dgvInventory.ReadOnly = true;
             dgvInventory.AllowUserToAddRows = false;
             dgvInventory.AllowUserToDeleteRows = false;
             dgvInventory.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
@@ -279,10 +266,6 @@ namespace MedCoreC_
             dgvInventory.Columns["ProductID"].ReadOnly = true;
             dgvInventory.Columns["Barcode"].ReadOnly = true;
             dgvInventory.Columns["UnitInStock"].ReadOnly = true;
-
-            dgvInventory.Columns["ProductName"].ReadOnly = false;
-            dgvInventory.Columns["ExpirationDate"].ReadOnly = false;
-            dgvInventory.Columns["UnitPrice"].ReadOnly = false;
 
             dgvInventory.Columns["UnitPrice"].DefaultCellStyle.Format = "0.00";
             dgvInventory.Columns["ExpirationDate"].DefaultCellStyle.Format = "yyyy-MM-dd";
