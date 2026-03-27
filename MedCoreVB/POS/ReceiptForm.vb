@@ -5,6 +5,7 @@
     Public Property Payment As Decimal
     Public Property Change As Decimal
     Public Property Total As Decimal
+    Public Property Discount As Decimal
     Public Property ItemsTable As DataTable
 
     Private Sub ReceiptForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -16,6 +17,7 @@
 
         lblPayment.Text = "₱" & Payment.ToString("N2")
         lblChange.Text = "₱" & Change.ToString("N2")
+        lblDiscount.Text = "₱" & Discount.ToString("N2")
         lblTotal.Text = "₱" & Total.ToString("N2")
 
         Try
@@ -80,4 +82,6 @@
         Panel1.Height = newHeight
         Me.Height = newHeight + 40
     End Sub
+
+
 End Class

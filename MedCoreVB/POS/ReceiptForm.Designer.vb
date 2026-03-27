@@ -37,6 +37,8 @@ Partial Class ReceiptForm
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -45,8 +47,8 @@ Partial Class ReceiptForm
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.lblDiscount = New System.Windows.Forms.Label()
         CType(Me.dgvItems, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -54,10 +56,10 @@ Partial Class ReceiptForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("MV Boli", 19.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(113, 9)
+        Me.Label1.Font = New System.Drawing.Font("Magneto", 19.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(110, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(158, 44)
+        Me.Label1.Size = New System.Drawing.Size(179, 41)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "MedCore"
         '
@@ -117,7 +119,7 @@ Partial Class ReceiptForm
         Me.lblTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblTotal.AutoSize = True
         Me.lblTotal.Font = New System.Drawing.Font("Consolas", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotal.Location = New System.Drawing.Point(92, 574)
+        Me.lblTotal.Location = New System.Drawing.Point(96, 565)
         Me.lblTotal.Name = "lblTotal"
         Me.lblTotal.Size = New System.Drawing.Size(54, 20)
         Me.lblTotal.TabIndex = 7
@@ -128,7 +130,7 @@ Partial Class ReceiptForm
         Me.lblPayment.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblPayment.AutoSize = True
         Me.lblPayment.Font = New System.Drawing.Font("Consolas", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPayment.Location = New System.Drawing.Point(116, 516)
+        Me.lblPayment.Location = New System.Drawing.Point(110, 505)
         Me.lblPayment.Name = "lblPayment"
         Me.lblPayment.Size = New System.Drawing.Size(54, 20)
         Me.lblPayment.TabIndex = 8
@@ -139,7 +141,7 @@ Partial Class ReceiptForm
         Me.lblChange.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblChange.AutoSize = True
         Me.lblChange.Font = New System.Drawing.Font("Consolas", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblChange.Location = New System.Drawing.Point(100, 545)
+        Me.lblChange.Location = New System.Drawing.Point(106, 525)
         Me.lblChange.Name = "lblChange"
         Me.lblChange.Size = New System.Drawing.Size(54, 20)
         Me.lblChange.TabIndex = 9
@@ -150,7 +152,7 @@ Partial Class ReceiptForm
         Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Consolas", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(1, 489)
+        Me.Label4.Location = New System.Drawing.Point(-4, 476)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(414, 20)
         Me.Label4.TabIndex = 10
@@ -208,6 +210,8 @@ Partial Class ReceiptForm
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.lblDiscount)
+        Me.Panel1.Controls.Add(Me.Label18)
         Me.Panel1.Controls.Add(Me.Label17)
         Me.Panel1.Controls.Add(Me.Label16)
         Me.Panel1.Controls.Add(Me.Label15)
@@ -236,6 +240,26 @@ Partial Class ReceiptForm
         Me.Panel1.Size = New System.Drawing.Size(377, 628)
         Me.Panel1.TabIndex = 16
         '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Consolas", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.Location = New System.Drawing.Point(109, 160)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(144, 20)
+        Me.Label17.TabIndex = 23
+        Me.Label17.Text = "123-456-789-000"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Font = New System.Drawing.Font("Consolas", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.Location = New System.Drawing.Point(22, 160)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(81, 20)
+        Me.Label16.TabIndex = 22
+        Me.Label16.Text = "TIN ID :"
+        '
         'Label15
         '
         Me.Label15.AutoSize = True
@@ -251,7 +275,7 @@ Partial Class ReceiptForm
         Me.Label14.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Consolas", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(22, 574)
+        Me.Label14.Location = New System.Drawing.Point(22, 565)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(72, 20)
         Me.Label14.TabIndex = 20
@@ -262,7 +286,7 @@ Partial Class ReceiptForm
         Me.Label13.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Consolas", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(22, 545)
+        Me.Label13.Location = New System.Drawing.Point(13, 525)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(81, 20)
         Me.Label13.TabIndex = 19
@@ -273,7 +297,7 @@ Partial Class ReceiptForm
         Me.Label12.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Consolas", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(22, 516)
+        Me.Label12.Location = New System.Drawing.Point(8, 505)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(99, 20)
         Me.Label12.TabIndex = 18
@@ -319,25 +343,27 @@ Partial Class ReceiptForm
         Me.Label5.TabIndex = 4
         Me.Label5.Text = "============================================="
         '
-        'Label16
+        'Label18
         '
-        Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("Consolas", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(22, 160)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(81, 20)
-        Me.Label16.TabIndex = 22
-        Me.Label16.Text = "TIN ID :"
+        Me.Label18.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Consolas", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.Location = New System.Drawing.Point(8, 545)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(162, 20)
+        Me.Label18.TabIndex = 24
+        Me.Label18.Text = "Total Discount : "
         '
-        'Label17
+        'lblDiscount
         '
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Consolas", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(109, 160)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(144, 20)
-        Me.Label17.TabIndex = 23
-        Me.Label17.Text = "123-456-789-000"
+        Me.lblDiscount.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblDiscount.AutoSize = True
+        Me.lblDiscount.Font = New System.Drawing.Font("Consolas", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDiscount.Location = New System.Drawing.Point(166, 545)
+        Me.lblDiscount.Name = "lblDiscount"
+        Me.lblDiscount.Size = New System.Drawing.Size(54, 20)
+        Me.lblDiscount.TabIndex = 25
+        Me.lblDiscount.Text = "₱0.00"
         '
         'ReceiptForm
         '
@@ -387,4 +413,6 @@ Partial Class ReceiptForm
     Friend WithEvents Label12 As Label
     Friend WithEvents Label17 As Label
     Friend WithEvents Label16 As Label
+    Friend WithEvents lblDiscount As Label
+    Friend WithEvents Label18 As Label
 End Class
