@@ -121,4 +121,12 @@ Public Class UC_DASHBOARD
     Private Sub TimerRefresh_Tick(sender As Object, e As EventArgs)
         LoadDashboardData()
     End Sub
+
+    Private Sub PanelMain_Paint(sender As Object, e As PaintEventArgs) Handles PanelMain.Paint
+
+    End Sub
+
+    Private Sub lblWelcome_Click(sender As Object, e As EventArgs) Handles lblWelcome.Click
+
+    End Sub
 End Class

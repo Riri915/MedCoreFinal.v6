@@ -69,4 +69,8 @@ Public Class UC_PATIENTQUEUE
     Private Sub TimerRefresh_Tick(sender As Object, e As EventArgs)
         RefreshQueueDisplay()
     End Sub
+
+    Private Sub pnlHeader_Paint(sender As Object, e As PaintEventArgs) Handles pnlHeader.Paint
+
+    End Sub
 End Class

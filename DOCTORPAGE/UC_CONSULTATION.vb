@@ -1,5 +1,4 @@
-﻿Imports System.Data.SqlClient
-Imports System.Drawing
+﻿Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports MySql.Data.MySqlClient
 
@@ -8,6 +7,7 @@ Public Class UC_CONSULTATION
     Private timerAutoSave As New Timer()
     Private currentServiceCode As String = ""
     Private currentServicePrice As Decimal = 0
+    Private currentServiceName As String = ""
 
     Private Sub UC_CONSULTATION_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StylePanels()
@@ -66,6 +66,7 @@ Public Class UC_CONSULTATION
             ComboBox1.Text = ConsultationSession("Status").ToString()
             currentServiceCode = ConsultationSession("ServiceCode").ToString()
             currentServicePrice = Convert.ToDecimal(ConsultationSession("Amount"))
+            currentServiceName = ConsultationSession("ServiceName").ToString()
         End If
     End Sub
 
@@ -81,7 +82,8 @@ Public Class UC_CONSULTATION
             currentServicePrice.ToString(),
             txtTransactionNo.Text,
             ComboBox1.Text,
-            currentServiceCode
+            currentServiceCode,
+            currentServiceName
         )
     End Sub
 
@@ -90,6 +92,8 @@ Public Class UC_CONSULTATION
             SaveToSession()
         End If
     End Sub
+
+    ' ==================== SET CURRENT PATIENT WITH AUTO TRANSACTION ====================
 
     Public Sub SetCurrentPatient(queueNumber As String)
         currentQueueNumber = queueNumber
@@ -103,19 +107,72 @@ Public Class UC_CONSULTATION
             txtAge.Text = If(IsDBNull(row("age")), "", row("age").ToString())
             ComboBox1.Text = row("status").ToString()
 
-            If Not IsDBNull(row("transaction_number")) Then
-                txtTransactionNo.Text = row("transaction_number").ToString()
-                currentServiceCode = ""
-                currentServicePrice = 0
-            Else
-                txtTransactionNo.Clear()
-            End If
+            ' Get service code based on service type from database
+            currentServiceCode = DatabaseHelper.GetServiceCodeByConcern(TextBox2.Text)
+            currentServiceName = DatabaseHelper.GetServiceName(currentServiceCode)
+            currentServicePrice = DatabaseHelper.GetServicePrice(currentServiceCode)
+
+            ' AUTO GENERATE TRANSACTION NUMBER
+            GenerateTransactionNumber()
 
             RichTextBox1.Clear()
             RichTextBox2.Clear()
             SaveToSession()
         End If
     End Sub
+
+    ' ==================== AUTO GENERATE TRANSACTION NUMBER ====================
+
+    Private Sub GenerateTransactionNumber()
+        If String.IsNullOrEmpty(currentServiceCode) Then
+            txtTransactionNo.Text = ""
+            Return
+        End If
+
+        ' Use service code as transaction number
+        Dim transNo As String = currentServiceCode
+
+        ' Check if transaction already exists today
+        Dim checkSql As String = "SELECT COUNT(*) FROM billing_transactions WHERE transaction_number = @TransNo"
+        Dim checkParams As New List(Of MySqlParameter) From {New MySqlParameter("@TransNo", transNo)}
+        Dim exists As Integer = Convert.ToInt32(DatabaseHelper.ExecuteScalar(checkSql, checkParams))
+
+        If exists > 0 Then
+            ' Add count if duplicate
+            Dim countSql As String = "SELECT COUNT(*) FROM billing_transactions WHERE service_code = @Code"
+            Dim countParams As New List(Of MySqlParameter) From {New MySqlParameter("@Code", currentServiceCode)}
+            Dim count As Integer = Convert.ToInt32(DatabaseHelper.ExecuteScalar(countSql, countParams))
+            transNo = currentServiceCode & "-" & (count + 1).ToString()
+        End If
+
+        txtTransactionNo.Text = transNo
+
+        ' Save to billing_transactions
+        Dim sql As String = "INSERT INTO billing_transactions (transaction_number, queue_number, patient_name, " &
+                           "service_type, service_code, amount) VALUES (@TransNo, @QueueNo, @Name, @Service, @Code, @Amount)"
+        Dim params As New List(Of MySqlParameter) From {
+            New MySqlParameter("@TransNo", transNo),
+            New MySqlParameter("@QueueNo", currentQueueNumber),
+            New MySqlParameter("@Name", TextBox1.Text),
+            New MySqlParameter("@Service", TextBox2.Text),
+            New MySqlParameter("@Code", currentServiceCode),
+            New MySqlParameter("@Amount", currentServicePrice)
+        }
+
+        DatabaseHelper.ExecuteNonQuery(sql, params)
+
+        ' Update patient_queue with transaction number
+        Dim updateSql As String = "UPDATE patient_queue SET transaction_number = @TransNo, amount = @Amount " &
+                                 "WHERE queue_number = @QueueNo"
+        Dim updateParams As New List(Of MySqlParameter) From {
+            New MySqlParameter("@TransNo", transNo),
+            New MySqlParameter("@Amount", currentServicePrice),
+            New MySqlParameter("@QueueNo", currentQueueNumber)
+        }
+        DatabaseHelper.ExecuteNonQuery(updateSql, updateParams)
+    End Sub
+
+    ' ==================== CALL NEXT PATIENT (AUTO GENERATE TRANSACTION) ====================
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If Not String.IsNullOrWhiteSpace(TextBox1.Text) Then
@@ -130,7 +187,9 @@ Public Class UC_CONSULTATION
             DatabaseHelper.UpdatePatientStatus(currentQueueNumber, "In progress")
             ComboBox1.Text = "In progress"
 
-            MessageBox.Show($"Patient {row("Name")} is now in consultation!",
+            MessageBox.Show($"Patient {row("Name")} is now in consultation!{vbCrLf}" &
+                           $"Transaction Code: {txtTransactionNo.Text}{vbCrLf}" &
+                           $"Amount: ₱{currentServicePrice:N2}",
                            "Patient Called", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             MessageBox.Show("No waiting patients in queue!", "Information",
@@ -138,41 +197,12 @@ Public Class UC_CONSULTATION
         End If
     End Sub
 
-    Private Sub btnGenerateTransaction_Click(sender As Object, e As EventArgs) Handles btnGenerateTransaction.Click
-        If String.IsNullOrWhiteSpace(currentQueueNumber) Then
-            MessageBox.Show("No patient selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-        ' Get service code based on concern
-        currentServiceCode = DatabaseHelper.GetServiceCodeByConcern(TextBox2.Text)
-
-        If String.IsNullOrEmpty(currentServiceCode) Then
-            MessageBox.Show("Cannot determine service code for this concern!", "Error",
-                          MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-        ' Get price from database
-        currentServicePrice = DatabaseHelper.GetServicePrice(currentServiceCode)
-        Dim serviceName As String = DatabaseHelper.GetServiceName(currentServiceCode)
-
-        ' Generate transaction
-        Dim transNo As String = DatabaseHelper.CreateTransaction(currentQueueNumber, TextBox1.Text,
-                                                                  currentServiceCode, serviceName, currentServicePrice)
-
-        If Not String.IsNullOrEmpty(transNo) Then
-            txtTransactionNo.Text = transNo
-            SaveToSession()
-
-            MessageBox.Show($"Transaction #{transNo} generated successfully! Amount: ₱{currentServicePrice:N2}",
-                           "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
-    End Sub
+    ' ==================== PRINT BILL ====================
 
     Private Sub btnPrintBill_Click(sender As Object, e As EventArgs) Handles btnPrintBill.Click
         If String.IsNullOrWhiteSpace(txtTransactionNo.Text) Then
-            MessageBox.Show("No transaction to print!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("No transaction to print! Please call a patient first.", "Error",
+                          MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
@@ -183,35 +213,55 @@ Public Class UC_CONSULTATION
 
     Private Sub PrintBillPage(sender As Object, e As Printing.PrintPageEventArgs)
         Dim font As New Font("Arial", 12)
-        Dim boldFont As New Font("Arial", 16, FontStyle.Bold)
+        Dim boldFont As New Font("Arial", 18, FontStyle.Bold)
+        Dim titleFont As New Font("Arial", 14, FontStyle.Bold)
         Dim smallFont As New Font("Arial", 8)
-        Dim y As Integer = 100
-        Dim lineHeight As Integer = 25
+        Dim y As Integer = 80
 
         ' Clinic Header
-        e.Graphics.DrawString("MEDCORE CLINIC", boldFont, Brushes.Black, 150, 50)
-        e.Graphics.DrawString("123 Health Street, Manila", smallFont, Brushes.Black, 130, 85)
-        y += 40
+        e.Graphics.DrawString("MEDCORE CLINIC", boldFont, Brushes.Black, 140, 30)
+        e.Graphics.DrawString("123 Health Street, Manila", smallFont, Brushes.Black, 130, 65)
+        y = 100
 
-        ' Transaction Number (Big and Bold)
-        e.Graphics.DrawString("TRANSACTION NUMBER:", font, Brushes.Black, 80, y)
-        y += 40
-        e.Graphics.DrawString(txtTransactionNo.Text, boldFont, Brushes.DarkBlue, 80, y)
-        y += 70
+        ' Draw Border Box
+        Dim borderRect As New Rectangle(50, y, 300, 120)
+        e.Graphics.DrawRectangle(New Pen(Color.Black, 2), borderRect)
+
+        ' Transaction Code inside box
+        e.Graphics.DrawString("TRANSACTION CODE:", font, Brushes.Black, 110, y + 20)
+        e.Graphics.DrawString(txtTransactionNo.Text, boldFont, Brushes.DarkBlue, 120, y + 55)
+
+        y = 240
+
+        ' Patient Information
+        e.Graphics.DrawString("Patient: " & TextBox1.Text, font, Brushes.Black, 50, y)
+        y += 25
+        e.Graphics.DrawString("Service: " & TextBox2.Text, font, Brushes.Black, 50, y)
+        y += 25
+        e.Graphics.DrawString("Amount: ₱" & currentServicePrice.ToString("N2"), font, Brushes.Black, 50, y)
+        y += 35
 
         ' Divider
         e.Graphics.DrawLine(New Pen(Color.LightGray, 1), 50, y, 350, y)
         y += 20
 
         ' Thank You Message
-        e.Graphics.DrawString("Thank you for choosing MEDCORE!", font, Brushes.DarkGreen, 70, y)
-        y += 40
-        e.Graphics.DrawString("Please proceed to the cashier for payment.", smallFont, Brushes.Gray, 70, y)
+        e.Graphics.DrawString("Thank you for choosing MEDCORE!", titleFont, Brushes.DarkGreen, 70, y)
+        y += 35
+        e.Graphics.DrawString("Please present this code to the cashier.", smallFont, Brushes.Gray, 70, y)
+        y += 25
+        e.Graphics.DrawString("Transaction Code: " & txtTransactionNo.Text, font, Brushes.Black, 70, y)
 
         ' Footer
-        y = 280
-        e.Graphics.DrawString("This serves as your official transaction slip.", smallFont, Brushes.Gray, 60, y)
+        y = 340
+        e.Graphics.DrawString("This is your official transaction slip.", smallFont, Brushes.Gray, 60, y)
     End Sub
+
+    ' ==================== REGENERATE TRANSACTION (Optional) ====================
+
+
+
+    ' ==================== SAVE CONSULTATION ====================
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If String.IsNullOrWhiteSpace(TextBox1.Text) Then
@@ -260,6 +310,7 @@ Public Class UC_CONSULTATION
         currentQueueNumber = ""
         currentServiceCode = ""
         currentServicePrice = 0
+        currentServiceName = ""
         ClearConsultationSession()
     End Sub
 

@@ -240,14 +240,14 @@ Public Class CashierPanel
                 UNION
 
                 SELECT 
-                    ServiceCode AS ID,
+                    Service_Code AS ID,
                     '' AS Barcode,
-                    ServiceName AS Name,
+                    Service_name AS Name,
                     NULL AS ExpirationDate,
                     Price,
                     9999 AS Stock,
                     'SERVICE' AS Type
-                FROM services
+                FROM service_code
                 WHERE ServiceCode = @kw
                    OR ServiceName LIKE CONCAT('%', @kw, '%')
 

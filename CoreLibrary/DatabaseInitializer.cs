@@ -137,13 +137,73 @@ namespace CoreLibrary
                     new MySqlCommand(createDiscountRecordsTable, dbConn).ExecuteNonQuery();
 
                     string createServicesTable = @"
-                        CREATE TABLE IF NOT EXISTS services (
-                            ServiceCode VARCHAR(10) PRIMARY KEY,
-                            ServiceName VARCHAR(100) NOT NULL,
+                        CREATE TABLE IF NOT EXISTS service_codes (
+                            Service_Code VARCHAR(10) PRIMARY KEY,
+                            Service_name VARCHAR(100) NOT NULL,
                             Price DECIMAL(10,2) NOT NULL
                         );
                     ";
                     new MySqlCommand(createServicesTable, dbConn).ExecuteNonQuery();
+
+                    string createPatientQueueTable = @"
+                        CREATE TABLE IF NOT EXISTS patient_queue (
+                            queue_number VARCHAR(50) PRIMARY KEY,
+                            patient_name VARCHAR(100),
+                            service_type VARCHAR(100),
+                            status VARCHAR(50),
+
+                            gender VARCHAR(10),
+                            age INT,
+                            birthday VARCHAR(50),
+                            address TEXT,
+                            phone VARCHAR(20),
+                            emergency_contact VARCHAR(100),
+
+                            diagnosis TEXT,
+                            prescription TEXT,
+
+                            transaction_number VARCHAR(50),
+                            amount DECIMAL(10,2),
+                            payment_status VARCHAR(50),
+
+                            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                            updated_at DATETIME NULL
+                        );";
+                    new MySqlCommand(createPatientQueueTable, dbConn).ExecuteNonQuery();
+
+                    string createBillingTransactionsTable = @"
+                        CREATE TABLE IF NOT EXISTS billing_transactions (
+                            transaction_number VARCHAR(50) PRIMARY KEY,
+                            queue_number VARCHAR(50),
+                            patient_name VARCHAR(100),
+
+                            service_type VARCHAR(100),
+                            service_code VARCHAR(50),
+
+                            amount DECIMAL(10,2),
+
+                            payment_status VARCHAR(50),
+                            payment_method VARCHAR(50),
+                            payment_date DATETIME
+                        );";
+                    new MySqlCommand(createBillingTransactionsTable, dbConn).ExecuteNonQuery();
+
+                    string createServiceCodesTable = @"
+                        CREATE TABLE IF NOT EXISTS service_codes (
+                            service_code VARCHAR(10) PRIMARY KEY,
+                            service_name VARCHAR(100) NOT NULL,
+                            price DECIMAL(10,2) NOT NULL
+                        );";
+                    new MySqlCommand(createServiceCodesTable, dbConn).ExecuteNonQuery();
+
+                    string createConcernMappingTable = @"
+                        CREATE TABLE IF NOT EXISTS concern_service_mapping (
+                            concern_name VARCHAR(100) PRIMARY KEY,
+                            service_code VARCHAR(50)
+                        );";
+                    new MySqlCommand(createConcernMappingTable, dbConn).ExecuteNonQuery();
+
+                    
 
                     InsertDefaultUser(dbConn, "EMP001", "System", "Admin", "admin", "admin123", "Admin");
                     InsertDefaultUser(dbConn, "EMP002", "Onic", "Austria", "cashier", "cashier123", "Cashier");
@@ -162,16 +222,16 @@ namespace CoreLibrary
             {
                 DatabaseSuccess = false;
                 throw new Exception("Database initialization failed:\n" + ex.Message);
-            }
+                }
         }
 
         private static void InsertDefaultServices(MySqlConnection conn)
         {
             string query = @"
-                INSERT INTO services (ServiceCode, ServiceName, Price)
+                INSERT INTO service_codes (service_code, service_name, price)
                 SELECT @code, @name, @price
                 WHERE NOT EXISTS (
-                    SELECT 1 FROM services WHERE ServiceCode = @code
+                    SELECT 1 FROM service_codes WHERE service_code = @code
                 );
             ";
 
