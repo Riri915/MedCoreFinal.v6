@@ -18,6 +18,7 @@ Partial Class UC_DASHBOARD
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.PanelMain = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lblWelcome = New System.Windows.Forms.Label()
         Me.PanelStats = New System.Windows.Forms.Panel()
         Me.PanelDone = New System.Windows.Forms.Panel()
@@ -47,15 +48,14 @@ Partial Class UC_DASHBOARD
         Me.lblOtherTitle = New System.Windows.Forms.Label()
         Me.lblCheckupTitle = New System.Windows.Forms.Label()
         Me.lblPastaTitle = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PanelMain.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.PanelStats.SuspendLayout()
         Me.PanelDone.SuspendLayout()
         Me.PanelServing.SuspendLayout()
         Me.PanelWaiting.SuspendLayout()
         Me.PanelTotal.SuspendLayout()
         Me.PanelCharts.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelMain
@@ -69,6 +69,14 @@ Partial Class UC_DASHBOARD
         Me.PanelMain.Name = "PanelMain"
         Me.PanelMain.Size = New System.Drawing.Size(1200, 700)
         Me.PanelMain.TabIndex = 0
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.lblWelcome)
+        Me.Panel1.Location = New System.Drawing.Point(30, 14)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1140, 100)
+        Me.Panel1.TabIndex = 3
         '
         'lblWelcome
         '
@@ -108,7 +116,7 @@ Partial Class UC_DASHBOARD
         '
         Me.lblDoneValue.AutoSize = True
         Me.lblDoneValue.Font = New System.Drawing.Font("Segoe UI", 48.0!, System.Drawing.FontStyle.Bold)
-        Me.lblDoneValue.ForeColor = System.Drawing.Color.FromArgb(CType(CType(155, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(182, Byte), Integer))
+        Me.lblDoneValue.ForeColor = System.Drawing.Color.LimeGreen
         Me.lblDoneValue.Location = New System.Drawing.Point(110, 60)
         Me.lblDoneValue.Name = "lblDoneValue"
         Me.lblDoneValue.Size = New System.Drawing.Size(91, 106)
@@ -140,7 +148,7 @@ Partial Class UC_DASHBOARD
         '
         Me.lblServingValue.AutoSize = True
         Me.lblServingValue.Font = New System.Drawing.Font("Segoe UI", 48.0!, System.Drawing.FontStyle.Bold)
-        Me.lblServingValue.ForeColor = System.Drawing.Color.FromArgb(CType(CType(46, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.lblServingValue.ForeColor = System.Drawing.Color.Magenta
         Me.lblServingValue.Location = New System.Drawing.Point(110, 60)
         Me.lblServingValue.Name = "lblServingValue"
         Me.lblServingValue.Size = New System.Drawing.Size(91, 106)
@@ -172,7 +180,7 @@ Partial Class UC_DASHBOARD
         '
         Me.lblWaitingValue.AutoSize = True
         Me.lblWaitingValue.Font = New System.Drawing.Font("Segoe UI", 48.0!, System.Drawing.FontStyle.Bold)
-        Me.lblWaitingValue.ForeColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(196, Byte), Integer), CType(CType(15, Byte), Integer))
+        Me.lblWaitingValue.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.lblWaitingValue.Location = New System.Drawing.Point(110, 60)
         Me.lblWaitingValue.Name = "lblWaitingValue"
         Me.lblWaitingValue.Size = New System.Drawing.Size(91, 106)
@@ -204,7 +212,7 @@ Partial Class UC_DASHBOARD
         '
         Me.lblTotalValue.AutoSize = True
         Me.lblTotalValue.Font = New System.Drawing.Font("Segoe UI", 48.0!, System.Drawing.FontStyle.Bold)
-        Me.lblTotalValue.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
+        Me.lblTotalValue.ForeColor = System.Drawing.Color.DodgerBlue
         Me.lblTotalValue.Location = New System.Drawing.Point(110, 60)
         Me.lblTotalValue.Name = "lblTotalValue"
         Me.lblTotalValue.Size = New System.Drawing.Size(91, 106)
@@ -273,7 +281,7 @@ Partial Class UC_DASHBOARD
         Me.lblOtherTime.AutoSize = True
         Me.lblOtherTime.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.lblOtherTime.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(94, Byte), Integer))
-        Me.lblOtherTime.Location = New System.Drawing.Point(770, 260)
+        Me.lblOtherTime.Location = New System.Drawing.Point(766, 280)
         Me.lblOtherTime.Name = "lblOtherTime"
         Me.lblOtherTime.Size = New System.Drawing.Size(98, 23)
         Me.lblOtherTime.TabIndex = 11
@@ -284,7 +292,7 @@ Partial Class UC_DASHBOARD
         Me.lblCheckupTime.AutoSize = True
         Me.lblCheckupTime.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.lblCheckupTime.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(94, Byte), Integer))
-        Me.lblCheckupTime.Location = New System.Drawing.Point(510, 260)
+        Me.lblCheckupTime.Location = New System.Drawing.Point(506, 280)
         Me.lblCheckupTime.Name = "lblCheckupTime"
         Me.lblCheckupTime.Size = New System.Drawing.Size(98, 23)
         Me.lblCheckupTime.TabIndex = 10
@@ -295,7 +303,7 @@ Partial Class UC_DASHBOARD
         Me.lblPastaTime.AutoSize = True
         Me.lblPastaTime.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.lblPastaTime.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(94, Byte), Integer))
-        Me.lblPastaTime.Location = New System.Drawing.Point(250, 260)
+        Me.lblPastaTime.Location = New System.Drawing.Point(246, 280)
         Me.lblPastaTime.Name = "lblPastaTime"
         Me.lblPastaTime.Size = New System.Drawing.Size(98, 23)
         Me.lblPastaTime.TabIndex = 9
@@ -306,7 +314,7 @@ Partial Class UC_DASHBOARD
         Me.lblOtherCount.AutoSize = True
         Me.lblOtherCount.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Bold)
         Me.lblOtherCount.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(94, Byte), Integer))
-        Me.lblOtherCount.Location = New System.Drawing.Point(770, 170)
+        Me.lblOtherCount.Location = New System.Drawing.Point(767, 226)
         Me.lblOtherCount.Name = "lblOtherCount"
         Me.lblOtherCount.Size = New System.Drawing.Size(46, 54)
         Me.lblOtherCount.TabIndex = 8
@@ -317,7 +325,7 @@ Partial Class UC_DASHBOARD
         Me.lblCheckupCount.AutoSize = True
         Me.lblCheckupCount.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Bold)
         Me.lblCheckupCount.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(94, Byte), Integer))
-        Me.lblCheckupCount.Location = New System.Drawing.Point(510, 170)
+        Me.lblCheckupCount.Location = New System.Drawing.Point(501, 226)
         Me.lblCheckupCount.Name = "lblCheckupCount"
         Me.lblCheckupCount.Size = New System.Drawing.Size(46, 54)
         Me.lblCheckupCount.TabIndex = 7
@@ -328,7 +336,7 @@ Partial Class UC_DASHBOARD
         Me.lblPastaCount.AutoSize = True
         Me.lblPastaCount.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Bold)
         Me.lblPastaCount.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(94, Byte), Integer))
-        Me.lblPastaCount.Location = New System.Drawing.Point(250, 170)
+        Me.lblPastaCount.Location = New System.Drawing.Point(247, 226)
         Me.lblPastaCount.Name = "lblPastaCount"
         Me.lblPastaCount.Size = New System.Drawing.Size(46, 54)
         Me.lblPastaCount.TabIndex = 6
@@ -337,6 +345,7 @@ Partial Class UC_DASHBOARD
         'barOther
         '
         Me.barOther.BackColor = System.Drawing.Color.FromArgb(CType(CType(155, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(182, Byte), Integer))
+        Me.barOther.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.barOther.Location = New System.Drawing.Point(770, 50)
         Me.barOther.Name = "barOther"
         Me.barOther.Size = New System.Drawing.Size(70, 120)
@@ -345,6 +354,7 @@ Partial Class UC_DASHBOARD
         'barCheckup
         '
         Me.barCheckup.BackColor = System.Drawing.Color.FromArgb(CType(CType(46, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.barCheckup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.barCheckup.Location = New System.Drawing.Point(510, 50)
         Me.barCheckup.Name = "barCheckup"
         Me.barCheckup.Size = New System.Drawing.Size(70, 120)
@@ -353,6 +363,7 @@ Partial Class UC_DASHBOARD
         'barPasta
         '
         Me.barPasta.BackColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
+        Me.barPasta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.barPasta.Location = New System.Drawing.Point(250, 50)
         Me.barPasta.Name = "barPasta"
         Me.barPasta.Size = New System.Drawing.Size(70, 120)
@@ -385,19 +396,11 @@ Partial Class UC_DASHBOARD
         Me.lblPastaTitle.AutoSize = True
         Me.lblPastaTitle.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblPastaTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(94, Byte), Integer))
-        Me.lblPastaTitle.Location = New System.Drawing.Point(250, 10)
+        Me.lblPastaTitle.Location = New System.Drawing.Point(205, 10)
         Me.lblPastaTitle.Name = "lblPastaTitle"
-        Me.lblPastaTitle.Size = New System.Drawing.Size(74, 32)
+        Me.lblPastaTitle.Size = New System.Drawing.Size(156, 32)
         Me.lblPastaTitle.TabIndex = 0
-        Me.lblPastaTitle.Text = "Pasta"
-        '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.lblWelcome)
-        Me.Panel1.Location = New System.Drawing.Point(30, 14)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1140, 100)
-        Me.Panel1.TabIndex = 3
+        Me.lblPastaTitle.Text = "Tooth Filling"
         '
         'UC_DASHBOARD
         '
@@ -407,6 +410,8 @@ Partial Class UC_DASHBOARD
         Me.Name = "UC_DASHBOARD"
         Me.Size = New System.Drawing.Size(1200, 700)
         Me.PanelMain.ResumeLayout(False)
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.PanelStats.ResumeLayout(False)
         Me.PanelDone.ResumeLayout(False)
         Me.PanelDone.PerformLayout()
@@ -418,8 +423,6 @@ Partial Class UC_DASHBOARD
         Me.PanelTotal.PerformLayout()
         Me.PanelCharts.ResumeLayout(False)
         Me.PanelCharts.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

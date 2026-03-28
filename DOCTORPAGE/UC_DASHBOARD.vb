@@ -58,42 +58,66 @@ Public Class UC_DASHBOARD
     End Sub
 
     Private Sub LoadDashboardData()
+        ' ========== STATS CARDS ==========
         ' Get data from database
         lblTotalValue.Text = DatabaseHelper.GetTotalPatients().ToString()
         lblWaitingValue.Text = DatabaseHelper.GetWaitingCount().ToString()
         lblServingValue.Text = DatabaseHelper.GetServingCount().ToString()
         lblDoneValue.Text = DatabaseHelper.GetDoneCount().ToString()
 
-        ' Get counts by service type
-        Dim pastaCount As Integer = DatabaseHelper.GetCountByServiceType("Pasta")
+        ' ========== SERVICE TYPE COUNTS ==========
+        ' Get counts by service type (Tooth Filling, Check-up, Others)
+        Dim toothFillingCount As Integer = DatabaseHelper.GetCountByServiceType("Tooth Filling")
         Dim checkupCount As Integer = DatabaseHelper.GetCountByServiceType("Check-up")
-        Dim otherCount As Integer = DatabaseHelper.GetTotalPatients() - pastaCount - checkupCount
+        Dim otherCount As Integer = DatabaseHelper.GetTotalPatients() - toothFillingCount - checkupCount
         If otherCount < 0 Then otherCount = 0
 
-        lblPastaCount.Text = pastaCount.ToString()
+        ' Update labels
+        lblPastaCount.Text = toothFillingCount.ToString()
         lblCheckupCount.Text = checkupCount.ToString()
         lblOtherCount.Text = otherCount.ToString()
 
-        ' Update bar heights based on counts
-        Dim maxCount As Integer = Math.Max(pastaCount, Math.Max(checkupCount, otherCount))
+        ' ========== FLEXIBLE BAR GRAPH ==========
+        ' Hanapin ang pinakamataas na count para i-scale ang lahat ng bars
+        Dim maxCount As Integer = Math.Max(toothFillingCount, Math.Max(checkupCount, otherCount))
+
         If maxCount > 0 Then
-            barPasta.Height = CInt(120 * pastaCount / maxCount)
+            ' I-scale ang bawat bar base sa pinakamataas (max height = 120px)
+            barPasta.Height = CInt(120 * toothFillingCount / maxCount)
             barCheckup.Height = CInt(120 * checkupCount / maxCount)
             barOther.Height = CInt(120 * otherCount / maxCount)
 
+            ' I-position mula sa baba (170 - height)
             barPasta.Top = 170 - barPasta.Height
             barCheckup.Top = 170 - barCheckup.Height
             barOther.Top = 170 - barOther.Height
+        Else
+            ' Kung walang patients, i-reset lahat ng bars
+            barPasta.Height = 0
+            barCheckup.Height = 0
+            barOther.Height = 0
+            barPasta.Top = 170
+            barCheckup.Top = 170
+            barOther.Top = 170
         End If
 
-        ' Update average times
-        Dim avgTime As Double = DatabaseHelper.GetAverageConsultationTime()
+        ' ========== AVERAGE TIMES ==========
+        ' Update average times (only counts consultations that are saved/completed)
+        Dim avgTime As Double = GetAverageConsultationTimeFromDatabase()
         lblAvgTimeValue.Text = avgTime.ToString() & " min"
 
-        lblPastaTime.Text = "Avg: " & GetAverageTimeByService("Pasta").ToString() & " min"
+        lblPastaTime.Text = "Avg: " & GetAverageTimeByService("Tooth Filling").ToString() & " min"
         lblCheckupTime.Text = "Avg: " & GetAverageTimeByService("Check-up").ToString() & " min"
         lblOtherTime.Text = "Avg: " & GetAverageTimeByService("Other").ToString() & " min"
     End Sub
+
+    ' Get average time from database - only counts consultations that are saved (status = Done)
+    Private Function GetAverageConsultationTimeFromDatabase() As Double
+        Dim sql As String = "SELECT AVG(TIMESTAMPDIFF(MINUTE, created_at, updated_at)) FROM patient_queue " &
+                           "WHERE updated_at IS NOT NULL AND status = 'Done'"
+        Dim result As Object = DatabaseHelper.ExecuteScalar(sql)
+        Return If(result IsNot Nothing AndAlso result IsNot DBNull.Value, Math.Round(Convert.ToDouble(result), 1), 0)
+    End Function
 
     Private Function GetAverageTimeByService(serviceType As String) As Double
         Dim query As String = ""
@@ -101,7 +125,7 @@ Public Class UC_DASHBOARD
         If serviceType = "Other" Then
             query = "SELECT AVG(TIMESTAMPDIFF(MINUTE, created_at, updated_at)) FROM patient_queue " &
                     "WHERE updated_at IS NOT NULL AND status = 'Done' " &
-                    "AND service_type NOT LIKE '%Pasta%' AND service_type NOT LIKE '%Check-up%'"
+                    "AND service_type NOT LIKE '%Tooth Filling%' AND service_type NOT LIKE '%Check-up%'"
         Else
             query = "SELECT AVG(TIMESTAMPDIFF(MINUTE, created_at, updated_at)) FROM patient_queue " &
                     "WHERE updated_at IS NOT NULL AND status = 'Done' AND service_type LIKE '%" & serviceType & "%'"
@@ -120,13 +144,5 @@ Public Class UC_DASHBOARD
 
     Private Sub TimerRefresh_Tick(sender As Object, e As EventArgs)
         LoadDashboardData()
-    End Sub
-
-    Private Sub PanelMain_Paint(sender As Object, e As PaintEventArgs) Handles PanelMain.Paint
-
-    End Sub
-
-    Private Sub lblWelcome_Click(sender As Object, e As EventArgs) Handles lblWelcome.Click
-
     End Sub
 End Class

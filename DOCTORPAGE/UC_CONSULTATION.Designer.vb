@@ -249,7 +249,7 @@ Partial Class UC_CONSULTATION
         Me.cmbGender.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbGender.Font = New System.Drawing.Font("Segoe UI", 11.0!)
         Me.cmbGender.FormattingEnabled = True
-        Me.cmbGender.Items.AddRange(New Object() {"Male", "Female", "Other"})
+        Me.cmbGender.Items.AddRange(New Object() {"Male", "Female"})
         Me.cmbGender.Location = New System.Drawing.Point(150, 160)
         Me.cmbGender.Name = "cmbGender"
         Me.cmbGender.Size = New System.Drawing.Size(120, 33)
