@@ -153,6 +153,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SharedData.vb" />
+    <Compile Include="SidebarStyler.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UC_CONSULTATION.Designer.vb">
       <DependentUpon>UC_CONSULTATION.vb</DependentUpon>
     </Compile>
@@ -213,6 +216,9 @@
     </None>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Adobe Express - file %282%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

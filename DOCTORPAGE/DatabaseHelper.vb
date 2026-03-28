@@ -5,13 +5,13 @@ Public Class DatabaseHelper
     Private Shared ReadOnly Property ConnectionString As String
         Get
             Try
-                Dim connStr As String = ConfigurationManager.ConnectionStrings("MedCoreDB")?.ConnectionString
+                Dim connStr As String = ConfigurationManager.ConnectionStrings("MedCore")?.ConnectionString
                 If Not String.IsNullOrEmpty(connStr) Then
                     Return connStr
                 End If
-                Return "Server=localhost;Database=medcoredb;User Id=root;Password=;"
+                Return "Server=localhost;Database=medcore;User Id=root;Password=;"
             Catch
-                Return "Server=localhost;Database=medcoredb;User Id=root;Password=;"
+                Return "Server=localhost;Database=medcore;User Id=root;Password=;"
             End Try
         End Get
     End Property
@@ -183,6 +183,8 @@ Public Class DatabaseHelper
         Dim result As Object = ExecuteScalar(sql, params)
         Return If(result IsNot Nothing, result.ToString(), "")
     End Function
+
+
 
     Public Shared Function GetServicePrice(serviceCode As String) As Decimal
         Dim sql As String = "SELECT price FROM service_codes WHERE service_code = @ServiceCode"

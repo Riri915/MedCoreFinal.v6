@@ -47,6 +47,7 @@ Partial Class UC_DASHBOARD
         Me.lblOtherTitle = New System.Windows.Forms.Label()
         Me.lblCheckupTitle = New System.Windows.Forms.Label()
         Me.lblPastaTitle = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PanelMain.SuspendLayout()
         Me.PanelStats.SuspendLayout()
         Me.PanelDone.SuspendLayout()
@@ -54,12 +55,13 @@ Partial Class UC_DASHBOARD
         Me.PanelWaiting.SuspendLayout()
         Me.PanelTotal.SuspendLayout()
         Me.PanelCharts.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelMain
         '
         Me.PanelMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(245, Byte), Integer))
-        Me.PanelMain.Controls.Add(Me.lblWelcome)
+        Me.PanelMain.Controls.Add(Me.Panel1)
         Me.PanelMain.Controls.Add(Me.PanelStats)
         Me.PanelMain.Controls.Add(Me.PanelCharts)
         Me.PanelMain.Dock = System.Windows.Forms.DockStyle.Fill
@@ -73,7 +75,7 @@ Partial Class UC_DASHBOARD
         Me.lblWelcome.AutoSize = True
         Me.lblWelcome.Font = New System.Drawing.Font("Segoe UI", 28.0!, System.Drawing.FontStyle.Bold)
         Me.lblWelcome.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(94, Byte), Integer))
-        Me.lblWelcome.Location = New System.Drawing.Point(30, 30)
+        Me.lblWelcome.Location = New System.Drawing.Point(17, 19)
         Me.lblWelcome.Name = "lblWelcome"
         Me.lblWelcome.Size = New System.Drawing.Size(501, 62)
         Me.lblWelcome.TabIndex = 0
@@ -389,6 +391,14 @@ Partial Class UC_DASHBOARD
         Me.lblPastaTitle.TabIndex = 0
         Me.lblPastaTitle.Text = "Pasta"
         '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.lblWelcome)
+        Me.Panel1.Location = New System.Drawing.Point(30, 14)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1140, 100)
+        Me.Panel1.TabIndex = 3
+        '
         'UC_DASHBOARD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -397,7 +407,6 @@ Partial Class UC_DASHBOARD
         Me.Name = "UC_DASHBOARD"
         Me.Size = New System.Drawing.Size(1200, 700)
         Me.PanelMain.ResumeLayout(False)
-        Me.PanelMain.PerformLayout()
         Me.PanelStats.ResumeLayout(False)
         Me.PanelDone.ResumeLayout(False)
         Me.PanelDone.PerformLayout()
@@ -409,6 +418,8 @@ Partial Class UC_DASHBOARD
         Me.PanelTotal.PerformLayout()
         Me.PanelCharts.ResumeLayout(False)
         Me.PanelCharts.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -443,4 +454,5 @@ Partial Class UC_DASHBOARD
     Friend WithEvents lblOtherTime As Label
     Friend WithEvents lblAvgTimeValue As Label
     Friend WithEvents lblAvgTimeTitle As Label
+    Friend WithEvents Panel1 As Panel
 End Class

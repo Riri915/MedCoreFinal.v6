@@ -87,11 +87,11 @@ Public Class DOCTORPAGES
         LoadPatientQueue()
     End Sub
 
-    Private Sub btnConsultation_Click(sender As Object, e As EventArgs) Handles btnConsultation.Click
+    Private Sub btnConsultation_Click(sender As Object, e As EventArgs) Handles Button1.Click
         LoadConsultation()
     End Sub
 
-    Private Sub btnRecords_Click(sender As Object, e As EventArgs) Handles btnRecords.Click
+    Private Sub btnRecords_Click(sender As Object, e As EventArgs) Handles Button2.Click
         LoadRecords()
     End Sub
 
@@ -100,5 +100,17 @@ Public Class DOCTORPAGES
                           MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
             Application.Exit()
         End If
+    End Sub
+
+
+    Private Sub PanelSidebar_Paint(sender As Object, e As PaintEventArgs) Handles PanelSidebar.Paint
+        Dim brush As New Drawing2D.LinearGradientBrush(
+        PanelSidebar.ClientRectangle,
+        Color.FromArgb(45, 95, 200),
+        Color.FromArgb(100, 160, 255),
+        Drawing2D.LinearGradientMode.Vertical)
+
+        e.Graphics.FillRectangle(brush, PanelSidebar.ClientRectangle)
+
     End Sub
 End Class

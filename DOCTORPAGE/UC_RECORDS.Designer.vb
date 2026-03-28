@@ -18,6 +18,10 @@ Partial Class UC_RECORDS
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.COLID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.COLPATIENT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.COLDIAGNOSIS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.COLDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -26,10 +30,6 @@ Partial Class UC_RECORDS
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.COLID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.COLPATIENT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.COLDIAGNOSIS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.COLDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -38,8 +38,7 @@ Partial Class UC_RECORDS
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.DataGridView1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
@@ -51,21 +50,47 @@ Partial Class UC_RECORDS
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.COLID, Me.COLPATIENT, Me.COLDIAGNOSIS, Me.COLDATE})
         Me.DataGridView1.EnableHeadersVisualStyles = False
         Me.DataGridView1.GridColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-        Me.DataGridView1.Location = New System.Drawing.Point(20, 110)
+        Me.DataGridView1.Location = New System.Drawing.Point(20, 139)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 38
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(1110, 300)
+        Me.DataGridView1.Size = New System.Drawing.Size(1110, 279)
         Me.DataGridView1.TabIndex = 0
+        '
+        'COLID
+        '
+        Me.COLID.HeaderText = "Queue #"
+        Me.COLID.MinimumWidth = 6
+        Me.COLID.Name = "COLID"
+        Me.COLID.ReadOnly = True
+        '
+        'COLPATIENT
+        '
+        Me.COLPATIENT.HeaderText = "PATIENT NAME"
+        Me.COLPATIENT.MinimumWidth = 6
+        Me.COLPATIENT.Name = "COLPATIENT"
+        Me.COLPATIENT.ReadOnly = True
+        '
+        'COLDIAGNOSIS
+        '
+        Me.COLDIAGNOSIS.HeaderText = "DIAGNOSIS"
+        Me.COLDIAGNOSIS.MinimumWidth = 6
+        Me.COLDIAGNOSIS.Name = "COLDIAGNOSIS"
+        Me.COLDIAGNOSIS.ReadOnly = True
+        '
+        'COLDATE
+        '
+        Me.COLDATE.HeaderText = "DATE"
+        Me.COLDATE.MinimumWidth = 6
+        Me.COLDATE.Name = "COLDATE"
+        Me.COLDATE.ReadOnly = True
         '
         'Panel1
         '
-        Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.Controls.Add(Me.btnDelete)
         Me.Panel1.Controls.Add(Me.Button1)
@@ -98,14 +123,14 @@ Partial Class UC_RECORDS
         '
         'Button1
         '
-        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(830, 610)
+        Me.Button1.Location = New System.Drawing.Point(834, 610)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(150, 40)
         Me.Button1.TabIndex = 7
@@ -171,7 +196,6 @@ Partial Class UC_RECORDS
         '
         'Label5
         '
-        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Bold)
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(94, Byte), Integer))
@@ -180,34 +204,6 @@ Partial Class UC_RECORDS
         Me.Label5.Size = New System.Drawing.Size(319, 46)
         Me.Label5.TabIndex = 2
         Me.Label5.Text = "PATIENT RECORDS"
-        '
-        'COLID
-        '
-        Me.COLID.HeaderText = "Queue #"
-        Me.COLID.MinimumWidth = 6
-        Me.COLID.Name = "COLID"
-        Me.COLID.ReadOnly = True
-        '
-        'COLPATIENT
-        '
-        Me.COLPATIENT.HeaderText = "PATIENT NAME"
-        Me.COLPATIENT.MinimumWidth = 6
-        Me.COLPATIENT.Name = "COLPATIENT"
-        Me.COLPATIENT.ReadOnly = True
-        '
-        'COLDIAGNOSIS
-        '
-        Me.COLDIAGNOSIS.HeaderText = "DIAGNOSIS"
-        Me.COLDIAGNOSIS.MinimumWidth = 6
-        Me.COLDIAGNOSIS.Name = "COLDIAGNOSIS"
-        Me.COLDIAGNOSIS.ReadOnly = True
-        '
-        'COLDATE
-        '
-        Me.COLDATE.HeaderText = "DATE"
-        Me.COLDATE.MinimumWidth = 6
-        Me.COLDATE.Name = "COLDATE"
-        Me.COLDATE.ReadOnly = True
         '
         'UC_RECORDS
         '

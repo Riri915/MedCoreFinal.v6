@@ -42,7 +42,6 @@ Partial Class UC_CONSULTATION
         Me.txtTransactionNo = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.btnPrintBill = New System.Windows.Forms.Button()
-        Me.btnGenerateTransaction = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.grpBilling.SuspendLayout()
@@ -50,12 +49,13 @@ Partial Class UC_CONSULTATION
         '
         'Button3
         '
+        Me.Button3.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(149, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(166, Byte), Integer))
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
         Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(350, 650)
+        Me.Button3.Location = New System.Drawing.Point(361, 616)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(150, 45)
         Me.Button3.TabIndex = 18
@@ -67,7 +67,7 @@ Partial Class UC_CONSULTATION
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Bold)
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(94, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(400, 20)
+        Me.Label5.Location = New System.Drawing.Point(491, 20)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(492, 54)
         Me.Label5.TabIndex = 16
@@ -119,12 +119,13 @@ Partial Class UC_CONSULTATION
         '
         'Button2
         '
+        Me.Button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(46, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(650, 650)
+        Me.Button2.Location = New System.Drawing.Point(653, 616)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(150, 45)
         Me.Button2.TabIndex = 17
@@ -133,12 +134,14 @@ Partial Class UC_CONSULTATION
         '
         'Panel2
         '
+        Me.Panel2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel2.Controls.Add(Me.Label7)
         Me.Panel2.Controls.Add(Me.Label6)
         Me.Panel2.Controls.Add(Me.RichTextBox2)
         Me.Panel2.Controls.Add(Me.RichTextBox1)
-        Me.Panel2.Location = New System.Drawing.Point(650, 100)
+        Me.Panel2.Location = New System.Drawing.Point(500, 97)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(600, 500)
         Me.Panel2.TabIndex = 15
@@ -146,6 +149,7 @@ Partial Class UC_CONSULTATION
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.Label3)
@@ -157,7 +161,7 @@ Partial Class UC_CONSULTATION
         Me.Panel1.Controls.Add(Me.txtAge)
         Me.Panel1.Controls.Add(Me.Label12)
         Me.Panel1.Controls.Add(Me.Label13)
-        Me.Panel1.Location = New System.Drawing.Point(50, 100)
+        Me.Panel1.Location = New System.Drawing.Point(152, 100)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(550, 350)
         Me.Panel1.TabIndex = 14
@@ -290,7 +294,7 @@ Partial Class UC_CONSULTATION
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(50, 470)
+        Me.Button1.Location = New System.Drawing.Point(152, 471)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(180, 45)
         Me.Button1.TabIndex = 13
@@ -299,14 +303,14 @@ Partial Class UC_CONSULTATION
         '
         'grpBilling
         '
+        Me.grpBilling.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpBilling.BackColor = System.Drawing.Color.White
         Me.grpBilling.Controls.Add(Me.txtTransactionNo)
         Me.grpBilling.Controls.Add(Me.Label8)
         Me.grpBilling.Controls.Add(Me.btnPrintBill)
-        Me.grpBilling.Controls.Add(Me.btnGenerateTransaction)
         Me.grpBilling.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.grpBilling.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(94, Byte), Integer))
-        Me.grpBilling.Location = New System.Drawing.Point(50, 540)
+        Me.grpBilling.Location = New System.Drawing.Point(150, 495)
         Me.grpBilling.Name = "grpBilling"
         Me.grpBilling.Size = New System.Drawing.Size(550, 100)
         Me.grpBilling.TabIndex = 19
@@ -342,41 +346,28 @@ Partial Class UC_CONSULTATION
         Me.btnPrintBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnPrintBill.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnPrintBill.ForeColor = System.Drawing.Color.White
-        Me.btnPrintBill.Location = New System.Drawing.Point(420, 50)
+        Me.btnPrintBill.Location = New System.Drawing.Point(406, 25)
         Me.btnPrintBill.Name = "btnPrintBill"
         Me.btnPrintBill.Size = New System.Drawing.Size(120, 35)
         Me.btnPrintBill.TabIndex = 1
         Me.btnPrintBill.Text = "🖨️ Print Bill"
         Me.btnPrintBill.UseVisualStyleBackColor = False
         '
-        'btnGenerateTransaction
-        '
-        Me.btnGenerateTransaction.BackColor = System.Drawing.Color.FromArgb(CType(CType(46, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.btnGenerateTransaction.FlatAppearance.BorderSize = 0
-        Me.btnGenerateTransaction.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnGenerateTransaction.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnGenerateTransaction.ForeColor = System.Drawing.Color.White
-        Me.btnGenerateTransaction.Location = New System.Drawing.Point(420, 15)
-        Me.btnGenerateTransaction.Name = "btnGenerateTransaction"
-        Me.btnGenerateTransaction.Size = New System.Drawing.Size(120, 35)
-        Me.btnGenerateTransaction.TabIndex = 0
-        Me.btnGenerateTransaction.Text = "💰 Generate Bill"
-        Me.btnGenerateTransaction.UseVisualStyleBackColor = False
-        '
         'UC_CONSULTATION
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.grpBilling)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.Button1)
         Me.Name = "UC_CONSULTATION"
-        Me.Size = New System.Drawing.Size(1300, 750)
+        Me.Size = New System.Drawing.Size(1298, 748)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
@@ -409,7 +400,6 @@ Partial Class UC_CONSULTATION
     Friend WithEvents txtTransactionNo As TextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents btnPrintBill As Button
-    Friend WithEvents btnGenerateTransaction As Button
     Friend WithEvents cmbGender As ComboBox
     Friend WithEvents txtAge As TextBox
     Friend WithEvents Label12 As Label
